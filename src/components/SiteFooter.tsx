@@ -31,7 +31,7 @@ const socials = [
 
 export default function SiteFooter() {
   return (
-    <footer className="bg-gray-900 text-white py-8 mt-12">
+    <footer className="bg-gradient-to-br from-red-800 via-red-700 to-yellow-600 dark:from-red-900 dark:via-red-800 dark:to-yellow-700 text-white py-8">
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4 px-4">
         <div className="flex gap-4 mb-4 md:mb-0">
           {socials.map((social, index) => (
@@ -40,7 +40,7 @@ export default function SiteFooter() {
               href={social.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-300 hover:text-yellow-400 transition-colors duration-200"
+              className="text-white/80 hover:text-yellow-300 transition-colors duration-200"
               aria-label={social.alt}
             >
               {social.icon}
@@ -52,7 +52,7 @@ export default function SiteFooter() {
             href="https://nathandelpapa.ac-page.com/privacy-policy"
             target="_blank"
             rel="noopener noreferrer"
-            className="underline hover:text-yellow-400 mr-2 transition-colors duration-200"
+            className="underline hover:text-yellow-300 mr-2 transition-colors duration-200"
           >
             Privacy Policy
           </a>
