@@ -1,7 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['www.spartamortgage.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'www.spartamortgage.com',
+      },
+    ],
+  },
+  experimental: {
+    allowedDevOrigins: ['38.45.65.66'],
   },
   async headers() {
     return [

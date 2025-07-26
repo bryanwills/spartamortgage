@@ -3,6 +3,7 @@ import SiteHeader from "../components/SiteHeader";
 import SiteFooter from "../components/SiteFooter";
 import { ThemeProvider } from "../components/ThemeProvider";
 import CookieBanner from "../components/CookieBanner";
+import { ChatbotProvider } from "../components/ChatbotProvider";
 
 export default function RootLayout({
   children,
@@ -13,12 +14,14 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className="font-sans antialiased" suppressHydrationWarning>
         <ThemeProvider defaultTheme="system" storageKey="sparta-theme">
-          <SiteHeader />
-          <main>
-            {children}
-            <SiteFooter />
-          </main>
-          <CookieBanner />
+          <ChatbotProvider>
+            <SiteHeader />
+            <main>
+              {children}
+              <SiteFooter />
+            </main>
+            <CookieBanner />
+          </ChatbotProvider>
         </ThemeProvider>
       </body>
     </html>
