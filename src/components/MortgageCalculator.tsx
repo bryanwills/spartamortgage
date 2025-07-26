@@ -144,22 +144,7 @@ const MortgageCalculator = () => {
   };
 
   return (
-    <div className="text-gray-900 dark:text-gray-100">
-      <section className="py-20 lg:py-32 bg-gradient-to-br from-red-600 via-red-500 to-yellow-500 dark:from-red-800 dark:via-red-700 dark:to-yellow-600">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="flex items-center justify-center gap-3 mb-6">
-              <Calculator className="w-8 h-8 text-yellow-300" />
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
-                Mortgage Calculator
-              </h1>
-            </div>
-            <p className="text-xl text-white/90 max-w-2xl mx-auto">
-              Calculate your monthly payment and see how extra payments can save you thousands.
-            </p>
-          </div>
-
-          <div className="max-w-6xl mx-auto bg-white/10 backdrop-blur-md rounded-2xl p-8 shadow-xl">
+    <div className="max-w-6xl mx-auto bg-white/10 backdrop-blur-md rounded-2xl p-8 shadow-xl">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Input Section */}
               <div className="space-y-6">
@@ -420,7 +405,7 @@ const MortgageCalculator = () => {
             )}
           </div>
         </div>
-      </section>
+      </div>
     </div>
   );
 };
