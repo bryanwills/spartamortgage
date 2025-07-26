@@ -210,8 +210,8 @@ export default function ApplyPage() {
       </section>
 
       {/* Mortgage Calculator Section */}
-      <section className="py-20 lg:py-32 bg-gradient-to-br from-red-600 via-red-500 to-yellow-500 dark:from-red-800 dark:via-red-700 dark:to-yellow-600">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-32 lg:py-48 bg-gradient-to-br from-red-600 via-red-500 to-yellow-500 dark:from-red-800 dark:via-red-700 dark:to-yellow-600">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-white">
               Calculate Your Payment
