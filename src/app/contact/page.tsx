@@ -128,7 +128,7 @@ export default function ContactPage() {
                     style={{ border: 0 }}
                     loading="lazy"
                     allowFullScreen
-                    src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJ32l-S42naYgRTT7AoGnFdG0&key=AIzaSyCcYf8QFgimEHQ1EriwWb52utYmeLMYokI"
+                    src={`https://www.google.com/maps/embed/v1/place?q=place_id:ChIJ32l-S42naYgRTT7AoGnFdG0&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`}
                   />
                 </div>
               </div>
