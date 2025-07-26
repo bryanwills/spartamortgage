@@ -14,10 +14,10 @@ export default function RootLayout({
       <body className="font-sans antialiased" suppressHydrationWarning>
         <ThemeProvider defaultTheme="system" storageKey="sparta-theme">
           <SiteHeader />
-          <main className="min-h-[80vh] bg-white dark:bg-gray-950 transition-colors duration-300">
+          <main>
             {children}
+            <SiteFooter />
           </main>
-          <SiteFooter />
           <CookieBanner />
         </ThemeProvider>
       </body>
