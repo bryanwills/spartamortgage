@@ -19,7 +19,7 @@ The Sparta Mortgage website now includes a comprehensive property search feature
 ### Screenshots
 
 #### Property Search Page
-![Property Search Feature](./docs/screenshots/property-search-feature.png)
+![Property Search Feature](./docs/screenshots/Sparta_Mortgage_Property_Search.png)
 
 The property search page features:
 - **Hero Section**: Gradient background with search form and quick search button
@@ -33,7 +33,7 @@ The property search page features:
 The website also includes an advanced mortgage calculator with two main views:
 
 #### Basic Mortgage Calculator
-![Mortgage Calculator Basic](./docs/screenshots/mortgage-calculator-basic.png)
+![Mortgage Calculator Basic](./docs/screenshots/Sparta_Mortgage_Calculator.png)
 
 Features:
 - **Loan Details Panel**: Input fields for home price, down payment, interest rate, loan term
@@ -41,7 +41,7 @@ Features:
 - **Real-time Calculations**: Instant updates as users modify input values
 
 #### Advanced Mortgage Calculator with Early Payoff
-![Mortgage Calculator Advanced](./docs/screenshots/mortgage-calculator-advanced.png)
+![Mortgage Calculator Advanced](./docs/screenshots/Sparta_Mortgage_Early_Payoff_Chart.png)
 
 Features:
 - **Extra Payment Benefits**: Shows interest saved, time saved, and new loan term
