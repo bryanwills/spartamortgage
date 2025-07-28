@@ -12,6 +12,7 @@ import {
   TrendingUp,
   CheckCircle
 } from 'lucide-react'
+import FeaturedProperties from './FeaturedProperties'
 
 export default function HomePage() {
   const [isVisible, setIsVisible] = useState(false)
@@ -192,6 +193,31 @@ export default function HomePage() {
                 Start Your Application
               </a>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Properties Section */}
+      <section className="py-20 lg:py-32 bg-white dark:bg-gray-900">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
+              Featured Properties
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
+              Discover beautiful homes in your area. Browse our curated selection of properties.
+            </p>
+          </div>
+
+          <FeaturedProperties />
+
+          <div className="text-center mt-12">
+            <a
+              href="/properties"
+              className="inline-block bg-gradient-to-r from-red-600 to-yellow-500 text-white px-8 py-3 rounded-full font-semibold hover:from-red-700 hover:to-yellow-600 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+            >
+              View All Properties
+            </a>
           </div>
         </div>
       </section>
