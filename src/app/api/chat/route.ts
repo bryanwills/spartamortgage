@@ -68,26 +68,29 @@ export async function POST(request: NextRequest) {
     const messages = [
       { role: 'system' as const, content: systemPrompt },
       ...conversationHistory,
-      { role: 'user' as const, content: message }
+      { role: 'user' as const, content: message },
     ];
 
     console.log('Making request to OpenRouter API...');
 
-    const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${apiKey}`,
-        'Content-Type': 'application/json',
-        'HTTP-Referer': 'https://spartamortgage.com',
-        'X-Title': 'Sparta Mortgage Chatbot'
-      },
-      body: JSON.stringify({
-        model: 'anthropic/claude-3.5-sonnet',
-        messages: messages,
-        max_tokens: 500,
-        temperature: 0.7,
-      }),
-    });
+    const response = await fetch(
+      'https://openrouter.ai/api/v1/chat/completions',
+      {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+          'Content-Type': 'application/json',
+          'HTTP-Referer': 'https://spartamortgage.com',
+          'X-Title': 'Sparta Mortgage Chatbot',
+        },
+        body: JSON.stringify({
+          model: 'anthropic/claude-3.5-sonnet',
+          messages: messages,
+          max_tokens: 500,
+          temperature: 0.7,
+        }),
+      }
+    );
 
     console.log('OpenRouter API response status:', response.status);
 
@@ -106,16 +109,15 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       response: aiResponse,
-      usage: data.usage
+      usage: data.usage,
     });
-
   } catch (error) {
     console.error('Chat API error:', error);
 
     return NextResponse.json(
       {
         error: 'Failed to get AI response',
-        details: error instanceof Error ? error.message : 'Unknown error'
+        details: error instanceof Error ? error.message : 'Unknown error',
       },
       { status: 500 }
     );

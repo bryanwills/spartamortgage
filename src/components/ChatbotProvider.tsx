@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import React, { createContext, useContext, useState } from 'react';
 import AIChatbot from './AIChatbot';
@@ -30,8 +30,12 @@ interface ChatbotProviderProps {
   children: React.ReactNode;
 }
 
-export const ChatbotProvider: React.FC<ChatbotProviderProps> = ({ children }) => {
-  const [contactFormMessages, setContactFormMessages] = useState<Message[] | null>(null);
+export const ChatbotProvider: React.FC<ChatbotProviderProps> = ({
+  children,
+}) => {
+  const [contactFormMessages, setContactFormMessages] = useState<
+    Message[] | null
+  >(null);
   const [showContactForm, setShowContactForm] = useState(false);
 
   const handleContactRequest = (messages: Message[]) => {
@@ -46,7 +50,7 @@ export const ChatbotProvider: React.FC<ChatbotProviderProps> = ({ children }) =>
 
   const contextValue: ChatbotContextType = {
     showContactForm: handleContactRequest,
-    hideContactForm
+    hideContactForm,
   };
 
   return (

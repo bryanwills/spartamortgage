@@ -7,25 +7,30 @@ The AI Chatbot is a comprehensive customer service solution integrated across al
 ## Key Features
 
 ### 🎯 **Universal Accessibility**
+
 - **Global Integration**: Available on every page of the website
 - **Persistent State**: Conversations are saved in localStorage and persist across page navigation
 - **Responsive Design**: Optimized for all device sizes and screen orientations
 
 ### 💬 **Intelligent Conversation Management**
+
 - **Context-Aware Responses**: Bot understands and responds to website-specific content
 - **Conversation Persistence**: Messages are saved locally and persist until cache/cookies are cleared
 - **Professional Messaging**: Default responses for off-topic questions guide users appropriately
 
 ### 🤖 **Smart Response System**
+
 The chatbot is trained to respond to specific categories of questions:
 
 #### **Mortgage Calculator**
+
 - Questions about payment calculations
 - Interest rate analysis
 - Extra payment benefits
 - Amortization charts
 
 #### **Loan Programs**
+
 - Conventional loans (3-20% down)
 - FHA loans (3.5% minimum down)
 - VA loans (0% down for veterans)
@@ -34,6 +39,7 @@ The chatbot is trained to respond to specific categories of questions:
 - Refinance options
 
 #### **Application Process**
+
 - Online application procedures
 - Document requirements
 - Credit check information
@@ -41,18 +47,21 @@ The chatbot is trained to respond to specific categories of questions:
 - Closing coordination
 
 #### **Company Information**
+
 - Sparta Mortgage services
 - Professional credentials
 - Service areas
 - Contact information
 
 #### **Rates and Costs**
+
 - Current rate information
 - Cost breakdowns
 - Rate comparison tools
 - Personalized quotes
 
 ### 📞 **Contact Integration**
+
 - **Seamless Handoff**: "Contact Agent" button transfers conversation context
 - **Context Preservation**: Full conversation history included in contact form
 - **Professional Form**: Comprehensive contact form with conversation summary
@@ -77,6 +86,7 @@ src/app/api/
 ### State Management
 
 #### **Local Storage Persistence**
+
 ```javascript
 // Conversation saved automatically
 localStorage.setItem('sparta-chatbot-conversation', JSON.stringify(messages));
@@ -86,6 +96,7 @@ const savedMessages = localStorage.getItem('sparta-chatbot-conversation');
 ```
 
 #### **AI-Powered Response System**
+
 ```javascript
 // OpenRouter AI Integration with fallback
 const callOpenRouter = async (userMessage: string, conversationHistory: Message[]): Promise<string> => {
@@ -115,12 +126,14 @@ const callOpenRouter = async (userMessage: string, conversationHistory: Message[
 ### UI/UX Features
 
 #### **Visual Design**
+
 - **Brand Consistency**: Red-to-yellow gradient matching website theme
 - **Dark Mode Support**: Full dark/light theme compatibility
 - **Smooth Animations**: Hover effects, loading states, transitions
 - **Professional Styling**: Modern, clean interface with proper spacing
 
 #### **User Experience**
+
 - **Floating Button**: Fixed position, always accessible
 - **Auto-scroll**: Messages automatically scroll to bottom
 - **Loading States**: Animated typing indicators
@@ -130,16 +143,20 @@ const callOpenRouter = async (userMessage: string, conversationHistory: Message[
 ## OpenRouter AI Integration
 
 ### **AI-Powered Responses**
+
 The chatbot now uses OpenRouter's Claude 3.5 Sonnet model to provide intelligent, context-aware responses while maintaining focus on mortgage-related topics.
 
 #### **System Prompt**
+
 The AI is trained with a comprehensive system prompt that includes:
+
 - **Company Information**: Sparta Mortgage services and capabilities
 - **Loan Programs**: All available mortgage options and requirements
 - **Professional Guidelines**: Tone, accuracy, and scope limitations
 - **Fallback Instructions**: How to handle off-topic questions
 
 #### **Key Features**
+
 - **Intelligent Responses**: Natural language understanding and generation
 - **Context Awareness**: Maintains conversation history for better responses
 - **Professional Tone**: Always maintains appropriate business communication
@@ -147,9 +164,10 @@ The AI is trained with a comprehensive system prompt that includes:
 - **Fallback System**: Rule-based responses when OpenAI is unavailable
 
 #### **API Configuration**
+
 ```javascript
 // Environment variable required
-OPENROUTER_API_KEY=your_openrouter_api_key_here
+OPENROUTER_API_KEY = your_openrouter_api_key_here;
 
 // API endpoint: /api/chat
 // Model: anthropic/claude-3.5-sonnet
@@ -160,6 +178,7 @@ OPENROUTER_API_KEY=your_openrouter_api_key_here
 ## Integration with Active Hosted CRM
 
 ### **Current Implementation**
+
 The contact form is structured to integrate with Active Hosted CRM:
 
 ```javascript
@@ -171,13 +190,14 @@ const formData = {
   company: formData.company,
   message: formData.message,
   preferredContact: formData.preferredContact,
-  chatbotContext: chatbotMessages // Full conversation history
+  chatbotContext: chatbotMessages, // Full conversation history
 };
 ```
 
 ### **Future CRM Integration Points**
 
 #### **API Endpoints Needed**
+
 ```javascript
 // Contact form submission
 POST /api/contact
@@ -206,6 +226,7 @@ POST /api/contact
 ```
 
 #### **CRM Features to Implement**
+
 1. **Lead Creation**: Automatically create leads from chatbot interactions
 2. **Conversation Tracking**: Store full conversation history in CRM
 3. **Agent Assignment**: Route leads to appropriate agents based on conversation context
@@ -215,6 +236,7 @@ POST /api/contact
 ## Configuration
 
 ### **Environment Variables**
+
 ```env
 # OpenAI API Key (for future AI integration)
 OPENAI_API_KEY=your_openai_api_key_here
@@ -227,20 +249,22 @@ CRM_API_KEY=your_crm_api_key_here
 ### **Customization Options**
 
 #### **Response Categories**
+
 The chatbot can be easily extended with new response categories:
 
 ```javascript
 // Add new response categories
 if (lowerMessage.includes('refinance')) {
-  return "Our refinance options include...";
+  return 'Our refinance options include...';
 }
 
 if (lowerMessage.includes('first-time')) {
-  return "First-time homebuyer programs include...";
+  return 'First-time homebuyer programs include...';
 }
 ```
 
 #### **Styling Customization**
+
 ```css
 /* Customize chatbot appearance */
 .chatbot-button {
@@ -256,18 +280,21 @@ if (lowerMessage.includes('first-time')) {
 ## Future Enhancements
 
 ### **Phase 1: AI Integration** ✅ **COMPLETED**
+
 - **OpenRouter AI Integration**: ✅ Integrated with Claude 3.5 Sonnet for intelligent responses
 - **Context Learning**: ✅ Trained on website content and mortgage knowledge
 - **Natural Language Processing**: ✅ Better understanding of user intent
 - **Fallback System**: ✅ Rule-based responses when OpenRouter is unavailable
 
 ### **Phase 2: Advanced Features**
+
 - **Voice Integration**: Speech-to-text and text-to-speech
 - **Multi-language Support**: Spanish and other languages
 - **Video Calls**: Direct video chat with agents
 - **Document Upload**: Allow file sharing in chat
 
 ### **Phase 3: Analytics & Optimization**
+
 - **Conversation Analytics**: Track popular questions and pain points
 - **A/B Testing**: Test different response strategies
 - **Performance Metrics**: Measure conversion rates and satisfaction
@@ -276,12 +303,14 @@ if (lowerMessage.includes('first-time')) {
 ## Security & Privacy
 
 ### **Data Protection**
+
 - **Local Storage**: Conversations stored locally, not on server
 - **No PII Collection**: No personal information collected without consent
 - **GDPR Compliance**: Easy conversation clearing for privacy
 - **Secure Transmission**: All data encrypted in transit
 
 ### **Privacy Controls**
+
 - **Clear Chat**: Users can clear conversation history
 - **Cookie Management**: Respects user cookie preferences
 - **Opt-out Options**: Users can disable chatbot functionality
@@ -289,12 +318,14 @@ if (lowerMessage.includes('first-time')) {
 ## Performance Considerations
 
 ### **Optimization Features**
+
 - **Lazy Loading**: Chatbot loads only when needed
 - **Minimal Bundle Size**: Efficient component structure
 - **Caching Strategy**: Optimized localStorage usage
 - **Responsive Design**: Fast loading on all devices
 
 ### **Monitoring**
+
 - **Error Tracking**: Comprehensive error logging
 - **Performance Metrics**: Load times and interaction tracking
 - **User Analytics**: Usage patterns and engagement rates
@@ -302,6 +333,7 @@ if (lowerMessage.includes('first-time')) {
 ## Testing Strategy
 
 ### **Unit Tests**
+
 ```javascript
 // Test response generation
 test('should return calculator response for calculator questions', () => {
@@ -318,6 +350,7 @@ test('should save messages to localStorage', () => {
 ```
 
 ### **Integration Tests**
+
 - **Cross-browser Compatibility**: Chrome, Firefox, Safari, Edge
 - **Mobile Responsiveness**: iOS Safari, Android Chrome
 - **Accessibility Testing**: Screen readers, keyboard navigation
@@ -326,6 +359,7 @@ test('should save messages to localStorage', () => {
 ## Deployment Checklist
 
 ### **Pre-deployment**
+
 - [ ] Environment variables configured
 - [ ] API keys secured
 - [ ] Error handling implemented
@@ -333,6 +367,7 @@ test('should save messages to localStorage', () => {
 - [ ] Privacy policy updated
 
 ### **Post-deployment**
+
 - [ ] Monitor error rates
 - [ ] Track user engagement
 - [ ] Gather feedback from agents
@@ -342,12 +377,14 @@ test('should save messages to localStorage', () => {
 ## Support & Maintenance
 
 ### **Regular Maintenance**
+
 - **Response Updates**: Keep responses current with business changes
 - **Performance Monitoring**: Track and optimize loading times
 - **Security Updates**: Regular dependency updates
 - **User Feedback**: Collect and implement user suggestions
 
 ### **Troubleshooting**
+
 - **Common Issues**: Document known problems and solutions
 - **Debug Tools**: Console logging for development
 - **Fallback Options**: Graceful degradation if chatbot fails
@@ -355,4 +392,4 @@ test('should save messages to localStorage', () => {
 
 ---
 
-*This documentation will be updated as the AI chatbot feature evolves and new capabilities are added.*
+_This documentation will be updated as the AI chatbot feature evolves and new capabilities are added._

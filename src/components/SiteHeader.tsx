@@ -1,19 +1,19 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { usePathname } from "next/navigation";
-import { ThemeToggle } from "./ThemeToggle";
-import { Phone, Menu, X } from "lucide-react";
+import React, { useState } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { usePathname } from 'next/navigation';
+import { ThemeToggle } from './ThemeToggle';
+import { Phone, Menu, X } from 'lucide-react';
 
 const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/properties", label: "Properties" },
-  { href: "/about", label: "About" },
-  { href: "/testimonials", label: "Testimonials" },
-  { href: "/apply", label: "Apply" },
-  { href: "/contact", label: "Contact" },
+  { href: '/', label: 'Home' },
+  { href: '/properties', label: 'Properties' },
+  { href: '/about', label: 'About' },
+  { href: '/testimonials', label: 'Testimonials' },
+  { href: '/apply', label: 'Apply' },
+  { href: '/contact', label: 'Contact' },
 ];
 
 export default function SiteHeader() {
@@ -45,11 +45,11 @@ export default function SiteHeader() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex gap-6 items-center">
-            {navLinks.map((link) => (
+            {navLinks.map(link => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`font-semibold hover:text-yellow-500 transition-colors ${pathname === link.href ? "text-yellow-500" : "text-gray-700 dark:text-gray-200"}`}
+                className={`font-semibold hover:text-yellow-500 transition-colors ${pathname === link.href ? 'text-yellow-500' : 'text-gray-700 dark:text-gray-200'}`}
               >
                 {link.label}
               </Link>
@@ -84,7 +84,11 @@ export default function SiteHeader() {
               className="text-gray-700 dark:text-gray-200 hover:text-yellow-500 transition-colors"
               aria-label="Toggle mobile menu"
             >
-              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
             </button>
           </div>
         </div>
@@ -94,14 +98,21 @@ export default function SiteHeader() {
       {isMenuOpen && (
         <div className="fixed inset-0 z-50 md:hidden">
           {/* Backdrop */}
-          <div className="absolute inset-0 bg-black/50" onClick={closeMenu}></div>
+          <div
+            className="absolute inset-0 bg-black/50"
+            onClick={closeMenu}
+          ></div>
 
           {/* Menu Content */}
           <div className="absolute inset-0 bg-white dark:bg-gray-900">
             <div className="flex flex-col h-full">
               {/* Header with close button */}
               <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
-                <Link href="/" className="flex items-center justify-center" onClick={closeMenu}>
+                <Link
+                  href="/"
+                  className="flex items-center justify-center"
+                  onClick={closeMenu}
+                >
                   <Image
                     src="https://www.spartamortgage.com/images/Logo_Highres.jpg"
                     alt="Sparta Mortgage Logo"
@@ -123,15 +134,15 @@ export default function SiteHeader() {
               {/* Navigation Links - Centered and evenly spaced */}
               <div className="flex-1 flex flex-col justify-center px-4">
                 <nav className="space-y-6">
-                  {navLinks.map((link) => (
+                  {navLinks.map(link => (
                     <Link
                       key={link.href}
                       href={link.href}
                       onClick={closeMenu}
                       className={`block text-2xl font-semibold py-4 px-6 rounded-lg transition-colors text-center ${
                         pathname === link.href
-                          ? "text-yellow-500 bg-yellow-50 dark:bg-yellow-900/20"
-                          : "text-gray-700 dark:text-gray-200 hover:text-yellow-500 hover:bg-gray-50 dark:hover:bg-gray-800"
+                          ? 'text-yellow-500 bg-yellow-50 dark:bg-yellow-900/20'
+                          : 'text-gray-700 dark:text-gray-200 hover:text-yellow-500 hover:bg-gray-50 dark:hover:bg-gray-800'
                       }`}
                     >
                       {link.label}

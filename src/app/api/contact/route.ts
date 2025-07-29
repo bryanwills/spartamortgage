@@ -32,12 +32,12 @@ export async function POST(request: NextRequest) {
         name: body.name,
         email: body.email,
         phone: body.phone,
-        company: body.company
+        company: body.company,
       },
       message: body.message,
       preferredContact: body.preferredContact,
       chatbotContext: body.chatbotContext,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
 
     // TODO: Integrate with Active Hosted CRM
@@ -57,18 +57,17 @@ export async function POST(request: NextRequest) {
         success: true,
         message: 'Contact form submitted successfully',
         leadId: `LEAD_${Date.now()}`, // Mock lead ID
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
       },
       { status: 200 }
     );
-
   } catch (error) {
     console.error('Contact form submission error:', error);
 
     return NextResponse.json(
       {
         error: 'Failed to submit contact form',
-        details: error instanceof Error ? error.message : 'Unknown error'
+        details: error instanceof Error ? error.message : 'Unknown error',
       },
       { status: 500 }
     );

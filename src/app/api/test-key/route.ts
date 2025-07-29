@@ -20,7 +20,6 @@ export async function GET(request: NextRequest) {
       isValidFormat: trimmedKey.startsWith('sk-ant-'),
       // Don't return the full key for security
     });
-
   } catch (error) {
     return NextResponse.json(
       { error: 'Failed to check API key' },

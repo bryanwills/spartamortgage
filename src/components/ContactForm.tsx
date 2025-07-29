@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import React, { useState } from 'react';
 import { Send, MessageSquare, User, Mail, Phone, Building } from 'lucide-react';
@@ -15,14 +15,17 @@ interface ContactFormProps {
   onClose?: () => void;
 }
 
-const ContactForm: React.FC<ContactFormProps> = ({ chatbotMessages, onClose }) => {
+const ContactForm: React.FC<ContactFormProps> = ({
+  chatbotMessages,
+  onClose,
+}) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     company: '',
     message: '',
-    preferredContact: 'email'
+    preferredContact: 'email',
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -32,7 +35,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ chatbotMessages, onClose }) =
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-    const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
@@ -47,8 +50,8 @@ const ContactForm: React.FC<ContactFormProps> = ({ chatbotMessages, onClose }) =
           chatbotContext: chatbotMessages?.map(msg => ({
             role: msg.role,
             content: msg.content,
-            timestamp: msg.timestamp.toISOString()
-          }))
+            timestamp: msg.timestamp.toISOString(),
+          })),
         }),
       });
 
@@ -76,7 +79,9 @@ const ContactForm: React.FC<ContactFormProps> = ({ chatbotMessages, onClose }) =
       <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-4 mb-6">
         <div className="flex items-center space-x-2 mb-3">
           <MessageSquare className="w-4 h-4 text-blue-600" />
-          <h4 className="font-semibold text-gray-900 dark:text-white">Chatbot Conversation Context</h4>
+          <h4 className="font-semibold text-gray-900 dark:text-white">
+            Chatbot Conversation Context
+          </h4>
         </div>
         <div className="space-y-2 max-h-32 overflow-y-auto">
           {chatbotMessages.map((msg, index) => (
@@ -85,7 +90,9 @@ const ContactForm: React.FC<ContactFormProps> = ({ chatbotMessages, onClose }) =
                 {msg.role === 'user' ? 'Visitor' : 'Assistant'}:
               </span>
               <span className="text-gray-700 dark:text-gray-300 ml-1">
-                {msg.content.length > 100 ? `${msg.content.substring(0, 100)}...` : msg.content}
+                {msg.content.length > 100
+                  ? `${msg.content.substring(0, 100)}...`
+                  : msg.content}
               </span>
             </div>
           ))}
@@ -109,7 +116,8 @@ const ContactForm: React.FC<ContactFormProps> = ({ chatbotMessages, onClose }) =
               Message Sent Successfully!
             </h3>
             <p className="text-gray-600 dark:text-gray-400 mb-6">
-              Thank you for contacting us. A real estate agent will get back to you soon with personalized assistance based on your conversation.
+              Thank you for contacting us. A real estate agent will get back to
+              you soon with personalized assistance based on your conversation.
             </p>
             <button
               onClick={onClose}
@@ -138,8 +146,18 @@ const ContactForm: React.FC<ContactFormProps> = ({ chatbotMessages, onClose }) =
               onClick={onClose}
               className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             </button>
           )}
@@ -158,7 +176,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ chatbotMessages, onClose }) =
                 type="text"
                 required
                 value={formData.name}
-                onChange={(e) => handleInputChange('name', e.target.value)}
+                onChange={e => handleInputChange('name', e.target.value)}
                 className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-red-500 focus:border-transparent"
                 placeholder="Your full name"
               />
@@ -173,7 +191,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ chatbotMessages, onClose }) =
                 type="email"
                 required
                 value={formData.email}
-                onChange={(e) => handleInputChange('email', e.target.value)}
+                onChange={e => handleInputChange('email', e.target.value)}
                 className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-red-500 focus:border-transparent"
                 placeholder="your.email@example.com"
               />
@@ -189,7 +207,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ chatbotMessages, onClose }) =
               <input
                 type="tel"
                 value={formData.phone}
-                onChange={(e) => handleInputChange('phone', e.target.value)}
+                onChange={e => handleInputChange('phone', e.target.value)}
                 className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-red-500 focus:border-transparent"
                 placeholder="(555) 123-4567"
               />
@@ -203,7 +221,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ chatbotMessages, onClose }) =
               <input
                 type="text"
                 value={formData.company}
-                onChange={(e) => handleInputChange('company', e.target.value)}
+                onChange={e => handleInputChange('company', e.target.value)}
                 className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-red-500 focus:border-transparent"
                 placeholder="Your company name"
               />
@@ -221,10 +239,14 @@ const ContactForm: React.FC<ContactFormProps> = ({ chatbotMessages, onClose }) =
                   name="preferredContact"
                   value="email"
                   checked={formData.preferredContact === 'email'}
-                  onChange={(e) => handleInputChange('preferredContact', e.target.value)}
+                  onChange={e =>
+                    handleInputChange('preferredContact', e.target.value)
+                  }
                   className="mr-2"
                 />
-                <span className="text-sm text-gray-700 dark:text-gray-300">Email</span>
+                <span className="text-sm text-gray-700 dark:text-gray-300">
+                  Email
+                </span>
               </label>
               <label className="flex items-center">
                 <input
@@ -232,10 +254,14 @@ const ContactForm: React.FC<ContactFormProps> = ({ chatbotMessages, onClose }) =
                   name="preferredContact"
                   value="phone"
                   checked={formData.preferredContact === 'phone'}
-                  onChange={(e) => handleInputChange('preferredContact', e.target.value)}
+                  onChange={e =>
+                    handleInputChange('preferredContact', e.target.value)
+                  }
                   className="mr-2"
                 />
-                <span className="text-sm text-gray-700 dark:text-gray-300">Phone</span>
+                <span className="text-sm text-gray-700 dark:text-gray-300">
+                  Phone
+                </span>
               </label>
             </div>
           </div>
@@ -246,7 +272,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ chatbotMessages, onClose }) =
             </label>
             <textarea
               value={formData.message}
-              onChange={(e) => handleInputChange('message', e.target.value)}
+              onChange={e => handleInputChange('message', e.target.value)}
               rows={4}
               className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-red-500 focus:border-transparent"
               placeholder="Tell us more about your needs or any specific questions..."

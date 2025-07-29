@@ -32,7 +32,7 @@ interface Property {
 }
 
 // Mock data for demonstration
-const mockProperties: Property[] = [
+export const mockProperties: Property[] = [
   {
     id: '1',
     address: '123 Oak Street',
@@ -48,10 +48,12 @@ const mockProperties: Property[] = [
     propertyType: 'Single Family',
     listingDate: '2024-01-15',
     status: 'Active',
-    imageUrl: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&h=300&fit=crop',
-    description: 'Beautiful 3-bedroom home in prime Louisville location. Recently updated kitchen and bathrooms.',
+    imageUrl:
+      'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&h=300&fit=crop',
+    description:
+      'Beautiful 3-bedroom home in prime Louisville location. Recently updated kitchen and bathrooms.',
     latitude: 38.2527,
-    longitude: -85.7585
+    longitude: -85.7585,
   },
   {
     id: '2',
@@ -68,10 +70,12 @@ const mockProperties: Property[] = [
     propertyType: 'Single Family',
     listingDate: '2024-01-10',
     status: 'Active',
-    imageUrl: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=400&h=300&fit=crop',
-    description: 'Spacious 4-bedroom home with modern amenities and large backyard.',
+    imageUrl:
+      'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=400&h=300&fit=crop',
+    description:
+      'Spacious 4-bedroom home with modern amenities and large backyard.',
     latitude: 38.2527,
-    longitude: -85.7585
+    longitude: -85.7585,
   },
   {
     id: '3',
@@ -88,10 +92,11 @@ const mockProperties: Property[] = [
     propertyType: 'Single Family',
     listingDate: '2024-01-20',
     status: 'Active',
-    imageUrl: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400&h=300&fit=crop',
+    imageUrl:
+      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400&h=300&fit=crop',
     description: 'Charming 2-bedroom starter home in quiet neighborhood.',
     latitude: 38.2527,
-    longitude: -85.7585
+    longitude: -85.7585,
   },
   {
     id: '4',
@@ -108,10 +113,12 @@ const mockProperties: Property[] = [
     propertyType: 'Single Family',
     listingDate: '2024-01-08',
     status: 'Active',
-    imageUrl: 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=400&h=300&fit=crop',
-    description: 'Modern 3-bedroom home with open floor plan and updated features.',
+    imageUrl:
+      'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=400&h=300&fit=crop',
+    description:
+      'Modern 3-bedroom home with open floor plan and updated features.',
     latitude: 38.2527,
-    longitude: -85.7585
+    longitude: -85.7585,
   },
   {
     id: '5',
@@ -128,10 +135,11 @@ const mockProperties: Property[] = [
     propertyType: 'Single Family',
     listingDate: '2024-01-12',
     status: 'Active',
-    imageUrl: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=400&h=300&fit=crop',
+    imageUrl:
+      'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=400&h=300&fit=crop',
     description: 'Well-maintained 3-bedroom home with great curb appeal.',
     latitude: 38.2527,
-    longitude: -85.7585
+    longitude: -85.7585,
   },
   {
     id: '6',
@@ -148,17 +156,22 @@ const mockProperties: Property[] = [
     propertyType: 'Single Family',
     listingDate: '2024-01-18',
     status: 'Active',
-    imageUrl: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&h=300&fit=crop',
-    description: 'Family-friendly 4-bedroom home with plenty of space and storage.',
+    imageUrl:
+      'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&h=300&fit=crop',
+    description:
+      'Family-friendly 4-bedroom home with plenty of space and storage.',
     latitude: 38.2527,
-    longitude: -85.7585
-  }
+    longitude: -85.7585,
+  },
 ];
 
 // Bridge Data Output API integration (placeholder for future implementation)
-async function searchBridgeAPI(params: PropertySearchParams): Promise<Property[]> {
+async function searchBridgeAPI(
+  params: PropertySearchParams
+): Promise<Property[]> {
   try {
-    const { BRIDGE_CLIENT_ID, BRIDGE_CLIENT_SECRET, BRIDGE_SERVER_TOKEN } = process.env;
+    const { BRIDGE_CLIENT_ID, BRIDGE_CLIENT_SECRET, BRIDGE_SERVER_TOKEN } =
+      process.env;
 
     if (!BRIDGE_CLIENT_ID || !BRIDGE_CLIENT_SECRET || !BRIDGE_SERVER_TOKEN) {
       console.log('Bridge API credentials not configured, using mock data');
@@ -176,26 +189,31 @@ async function searchBridgeAPI(params: PropertySearchParams): Promise<Property[]
   }
 }
 
-function filterProperties(properties: Property[], params: PropertySearchParams): Property[] {
+function filterProperties(
+  properties: Property[],
+  params: PropertySearchParams
+): Property[] {
   let filtered = [...properties];
 
-    // Filter by location
+  // Filter by location
   if (params.location) {
     const locationLower = params.location.toLowerCase();
     // Split location by comma and clean up
     const locationParts = locationLower.split(',').map(part => part.trim());
 
     filtered = filtered.filter(property => {
-      const fullAddress = `${property.address} ${property.city} ${property.state} ${property.zipCode}`.toLowerCase();
+      const fullAddress =
+        `${property.address} ${property.city} ${property.state} ${property.zipCode}`.toLowerCase();
       const cityState = `${property.city} ${property.state}`.toLowerCase();
 
       // Check if any part of the location matches
-      return locationParts.some(part =>
-        fullAddress.includes(part) ||
-        cityState.includes(part) ||
-        property.city.toLowerCase().includes(part) ||
-        property.state.toLowerCase().includes(part) ||
-        property.zipCode.includes(part)
+      return locationParts.some(
+        part =>
+          fullAddress.includes(part) ||
+          cityState.includes(part) ||
+          property.city.toLowerCase().includes(part) ||
+          property.state.toLowerCase().includes(part) ||
+          property.zipCode.includes(part)
       );
     });
   }
@@ -230,7 +248,10 @@ function sortProperties(properties: Property[], sortBy?: string): Property[] {
     case 'price_high':
       return sorted.sort((a, b) => b.price - a.price);
     case 'date':
-      return sorted.sort((a, b) => new Date(b.listingDate).getTime() - new Date(a.listingDate).getTime());
+      return sorted.sort(
+        (a, b) =>
+          new Date(b.listingDate).getTime() - new Date(a.listingDate).getTime()
+      );
     case 'distance':
       // For now, return as-is since we don't have user location
       return sorted;
@@ -245,12 +266,22 @@ export async function GET(request: NextRequest) {
 
     const params: PropertySearchParams = {
       location: searchParams.get('location') || undefined,
-      minPrice: searchParams.get('minPrice') ? parseInt(searchParams.get('minPrice')!) : undefined,
-      maxPrice: searchParams.get('maxPrice') ? parseInt(searchParams.get('maxPrice')!) : undefined,
-      beds: searchParams.get('beds') ? parseInt(searchParams.get('beds')!) : undefined,
-      baths: searchParams.get('baths') ? parseInt(searchParams.get('baths')!) : undefined,
-      sortBy: searchParams.get('sortBy') as any || undefined,
-      limit: searchParams.get('limit') ? parseInt(searchParams.get('limit')!) : undefined
+      minPrice: searchParams.get('minPrice')
+        ? parseInt(searchParams.get('minPrice')!)
+        : undefined,
+      maxPrice: searchParams.get('maxPrice')
+        ? parseInt(searchParams.get('maxPrice')!)
+        : undefined,
+      beds: searchParams.get('beds')
+        ? parseInt(searchParams.get('beds')!)
+        : undefined,
+      baths: searchParams.get('baths')
+        ? parseInt(searchParams.get('baths')!)
+        : undefined,
+      sortBy: (searchParams.get('sortBy') as any) || undefined,
+      limit: searchParams.get('limit')
+        ? parseInt(searchParams.get('limit')!)
+        : undefined,
     };
 
     // Get properties from Bridge API or fallback to mock data
@@ -271,16 +302,15 @@ export async function GET(request: NextRequest) {
       success: true,
       properties,
       total: properties.length,
-      filters: params
+      filters: params,
     });
-
   } catch (error) {
     console.error('Properties API error:', error);
 
     return NextResponse.json(
       {
         error: 'Failed to fetch properties',
-        details: error instanceof Error ? error.message : 'Unknown error'
+        details: error instanceof Error ? error.message : 'Unknown error',
       },
       { status: 500 }
     );

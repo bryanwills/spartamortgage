@@ -1,14 +1,8 @@
 {
-    "aiSettings": {
-      "enableAutocomplete": true,
-      "preferTypeScript": true,
-      "maxContextFiles": 40
-    },
-    "fileIgnore": [
-      "node_modules",
-      ".next",
-      ".git",
-      ".env",
-      ".DS_Store"
-    ]
-  }
+  "aiSettings": {
+    "enableAutocomplete": true,
+    "preferTypeScript": true,
+    "maxContextFiles": 40
+  },
+  "fileIgnore": ["node_modules", ".next", ".git", ".env", ".DS_Store"]
+}

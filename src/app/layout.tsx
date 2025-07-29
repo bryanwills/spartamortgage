@@ -1,9 +1,9 @@
-import "./globals.css";
-import SiteHeader from "../components/SiteHeader";
-import SiteFooter from "../components/SiteFooter";
-import { ThemeProvider } from "../components/ThemeProvider";
-import CookieBanner from "../components/CookieBanner";
-import { ChatbotProvider } from "../components/ChatbotProvider";
+import './globals.css';
+import SiteHeader from '../components/SiteHeader';
+import SiteFooter from '../components/SiteFooter';
+import { ThemeProvider } from '../components/ThemeProvider';
+import CookieBanner from '../components/CookieBanner';
+import { ChatbotProvider } from '../components/ChatbotProvider';
 
 export default function RootLayout({
   children,

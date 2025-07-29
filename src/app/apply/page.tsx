@@ -1,8 +1,15 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { CheckCircle, DollarSign, Shield, Clock, Users, Star } from 'lucide-react'
-import MortgageCalculator from '../../components/MortgageCalculator'
+import React from 'react';
+import {
+  CheckCircle,
+  DollarSign,
+  Shield,
+  Clock,
+  Users,
+  Star,
+} from 'lucide-react';
+import MortgageCalculator from '../../components/MortgageCalculator';
 
 export default function ApplyPage() {
   return (
@@ -15,7 +22,8 @@ export default function ApplyPage() {
             <span className="block text-yellow-300">Dream Home</span>
           </h1>
           <p className="text-xl sm:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed">
-            Start your mortgage application today. Our streamlined process makes getting approved simple and stress-free.
+            Start your mortgage application today. Our streamlined process makes
+            getting approved simple and stress-free.
           </p>
           <a
             href="https://1857586.my1003app.com/51796/register"
@@ -36,7 +44,8 @@ export default function ApplyPage() {
               Loan Programs We Offer
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
-              From conventional to government-backed loans, we have access to virtually every mortgage program available.
+              From conventional to government-backed loans, we have access to
+              virtually every mortgage program available.
             </p>
           </div>
 
@@ -46,7 +55,9 @@ export default function ApplyPage() {
               <div className="w-16 h-16 bg-gradient-to-r from-red-500 to-yellow-500 rounded-full flex items-center justify-center mb-6">
                 <DollarSign className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">Conventional Loans</h3>
+              <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">
+                Conventional Loans
+              </h3>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
                 Traditional mortgages with competitive rates and flexible terms.
               </p>
@@ -71,7 +82,9 @@ export default function ApplyPage() {
               <div className="w-16 h-16 bg-gradient-to-r from-red-500 to-yellow-500 rounded-full flex items-center justify-center mb-6">
                 <Shield className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">FHA Loans</h3>
+              <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">
+                FHA Loans
+              </h3>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
                 Government-backed loans perfect for first-time homebuyers.
               </p>
@@ -96,9 +109,12 @@ export default function ApplyPage() {
               <div className="w-16 h-16 bg-gradient-to-r from-red-500 to-yellow-500 rounded-full flex items-center justify-center mb-6">
                 <Star className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">VA Loans</h3>
+              <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">
+                VA Loans
+              </h3>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
-                Special benefits for veterans, active duty, and military families.
+                Special benefits for veterans, active duty, and military
+                families.
               </p>
               <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
                 <li className="flex items-center space-x-2">
@@ -121,7 +137,9 @@ export default function ApplyPage() {
               <div className="w-16 h-16 bg-gradient-to-r from-red-500 to-yellow-500 rounded-full flex items-center justify-center mb-6">
                 <Users className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">USDA Loans</h3>
+              <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">
+                USDA Loans
+              </h3>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
                 Rural development loans for eligible areas and borrowers.
               </p>
@@ -146,7 +164,9 @@ export default function ApplyPage() {
               <div className="w-16 h-16 bg-gradient-to-r from-red-500 to-yellow-500 rounded-full flex items-center justify-center mb-6">
                 <DollarSign className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">Jumbo Loans</h3>
+              <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">
+                Jumbo Loans
+              </h3>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
                 Large loan amounts for high-value properties.
               </p>
@@ -171,7 +191,9 @@ export default function ApplyPage() {
               <div className="w-16 h-16 bg-gradient-to-r from-red-500 to-yellow-500 rounded-full flex items-center justify-center mb-6">
                 <Clock className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">Refinance</h3>
+              <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">
+                Refinance
+              </h3>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
                 Lower your rate, reduce payments, or cash out equity.
               </p>
@@ -217,12 +239,13 @@ export default function ApplyPage() {
               Calculate Your Payment
             </h2>
             <p className="text-xl text-white/90 max-w-2xl mx-auto">
-              Use our interactive calculator to estimate your monthly payment and see how extra payments can save you thousands.
+              Use our interactive calculator to estimate your monthly payment
+              and see how extra payments can save you thousands.
             </p>
           </div>
           <MortgageCalculator />
         </div>
       </section>
     </div>
-  )
+  );
 }

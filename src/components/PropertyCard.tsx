@@ -1,7 +1,15 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { Bed, Bath, Square, MapPin, Heart, Share2, Calendar } from 'lucide-react'
+import React from 'react';
+import {
+  Bed,
+  Bath,
+  Square,
+  MapPin,
+  Heart,
+  Share2,
+  Calendar,
+} from 'lucide-react';
 
 interface Property {
   id: string;
@@ -30,37 +38,41 @@ interface PropertyCardProps {
   onClick: () => void;
 }
 
-export default function PropertyCard({ property, viewMode, onClick }: PropertyCardProps) {
+export default function PropertyCard({
+  property,
+  viewMode,
+  onClick,
+}: PropertyCardProps) {
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
-    }).format(price)
-  }
+    }).format(price);
+  };
 
   const formatDate = (dateString: string) => {
-    const date = new Date(dateString)
+    const date = new Date(dateString);
     return date.toLocaleDateString('en-US', {
       month: 'short',
       day: 'numeric',
-      year: 'numeric'
-    })
-  }
+      year: 'numeric',
+    });
+  };
 
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'Active':
-        return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
+        return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200';
       case 'Pending':
-        return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200'
+        return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200';
       case 'Sold':
-        return 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200'
+        return 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200';
       default:
-        return 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200'
+        return 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200';
     }
-  }
+  };
 
   if (viewMode === 'list') {
     return (
@@ -93,7 +105,9 @@ export default function PropertyCard({ property, viewMode, onClick }: PropertyCa
                 <div className="text-2xl font-bold text-gray-900 dark:text-white">
                   {formatPrice(property.price)}
                 </div>
-                <span className={`inline-block px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(property.status)}`}>
+                <span
+                  className={`inline-block px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(property.status)}`}
+                >
                   {property.status}
                 </span>
               </div>
@@ -145,7 +159,7 @@ export default function PropertyCard({ property, viewMode, onClick }: PropertyCa
           </div>
         </div>
       </div>
-    )
+    );
   }
 
   // Grid View
@@ -162,7 +176,9 @@ export default function PropertyCard({ property, viewMode, onClick }: PropertyCa
           className="w-full h-full object-cover"
         />
         <div className="absolute top-3 right-3">
-          <span className={`inline-block px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(property.status)}`}>
+          <span
+            className={`inline-block px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(property.status)}`}
+          >
             {property.status}
           </span>
         </div>
@@ -223,5 +239,5 @@ export default function PropertyCard({ property, viewMode, onClick }: PropertyCa
         </div>
       </div>
     </div>
-  )
+  );
 }

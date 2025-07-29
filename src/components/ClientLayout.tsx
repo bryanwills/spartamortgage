@@ -1,24 +1,28 @@
 'use client';
-import React, { useState, useEffect } from "react";
-import { Moon, Sun, Menu, X } from "lucide-react";
+import React, { useState, useEffect } from 'react';
+import { Moon, Sun, Menu, X } from 'lucide-react';
 
-export default function ClientLayout({ children }: { children: React.ReactNode }) {
+export default function ClientLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const [darkMode, setDarkMode] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     setDarkMode(mediaQuery.matches);
     const handler = (e: MediaQueryListEvent) => setDarkMode(e.matches);
-    mediaQuery.addEventListener("change", handler);
-    return () => mediaQuery.removeEventListener("change", handler);
+    mediaQuery.addEventListener('change', handler);
+    return () => mediaQuery.removeEventListener('change', handler);
   }, []);
 
   useEffect(() => {
     if (darkMode) {
-      document.documentElement.classList.add("dark");
+      document.documentElement.classList.add('dark');
     } else {
-      document.documentElement.classList.remove("dark");
+      document.documentElement.classList.remove('dark');
     }
   }, [darkMode]);
 
@@ -43,19 +47,34 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
             </div>
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-8">
-              <a href="#home" className="text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 transition-colors">
+              <a
+                href="#home"
+                className="text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 transition-colors"
+              >
                 Home
               </a>
-              <a href="#services" className="text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 transition-colors">
+              <a
+                href="#services"
+                className="text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 transition-colors"
+              >
                 Services
               </a>
-              <a href="#about" className="text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 transition-colors">
+              <a
+                href="#about"
+                className="text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 transition-colors"
+              >
                 About
               </a>
-              <a href="#testimonials" className="text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 transition-colors">
+              <a
+                href="#testimonials"
+                className="text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 transition-colors"
+              >
                 Testimonials
               </a>
-              <a href="#contact" className="text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 transition-colors">
+              <a
+                href="#contact"
+                className="text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 transition-colors"
+              >
                 Contact
               </a>
               {/* Theme Toggle */}
@@ -63,7 +82,11 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
                 onClick={() => setDarkMode(!darkMode)}
                 className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
               >
-                {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+                {darkMode ? (
+                  <Sun className="w-5 h-5" />
+                ) : (
+                  <Moon className="w-5 h-5" />
+                )}
               </button>
             </nav>
             {/* Mobile menu button */}
@@ -72,13 +95,21 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
                 onClick={() => setDarkMode(!darkMode)}
                 className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300"
               >
-                {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+                {darkMode ? (
+                  <Sun className="w-5 h-5" />
+                ) : (
+                  <Moon className="w-5 h-5" />
+                )}
               </button>
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300"
               >
-                {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                {mobileMenuOpen ? (
+                  <X className="w-5 h-5" />
+                ) : (
+                  <Menu className="w-5 h-5" />
+                )}
               </button>
             </div>
           </div>
@@ -86,19 +117,34 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
           {mobileMenuOpen && (
             <div className="md:hidden border-t border-gray-200 dark:border-gray-700 py-4">
               <nav className="flex flex-col space-y-4">
-                <a href="#home" className="text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 transition-colors">
+                <a
+                  href="#home"
+                  className="text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 transition-colors"
+                >
                   Home
                 </a>
-                <a href="#services" className="text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 transition-colors">
+                <a
+                  href="#services"
+                  className="text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 transition-colors"
+                >
                   Services
                 </a>
-                <a href="#about" className="text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 transition-colors">
+                <a
+                  href="#about"
+                  className="text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 transition-colors"
+                >
                   About
                 </a>
-                <a href="#testimonials" className="text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 transition-colors">
+                <a
+                  href="#testimonials"
+                  className="text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 transition-colors"
+                >
                   Testimonials
                 </a>
-                <a href="#contact" className="text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 transition-colors">
+                <a
+                  href="#contact"
+                  className="text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 transition-colors"
+                >
                   Contact
                 </a>
               </nav>
@@ -111,7 +157,8 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       <footer className="bg-gray-900 dark:bg-black text-white py-8">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="mb-2">
-            &copy; 2024 Sparta Mortgage LLC. Licensed in Kentucky, Indiana, Florida, and Georgia. Equal Housing Opportunity.
+            &copy; 2024 Sparta Mortgage LLC. Licensed in Kentucky, Indiana,
+            Florida, and Georgia. Equal Housing Opportunity.
           </p>
           <p className="text-sm text-gray-400">
             NMLS#: 1857586 & 51796 | All loans subject to credit approval.

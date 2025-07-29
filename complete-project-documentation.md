@@ -16,6 +16,7 @@ For options 1 through 4 below, they will all be completely separate websites, ba
 5. **Integrate all requirements into one completed website**
 
 ### Technology Stack
+
 - React
 - TypeScript
 - TailwindCSS/ShadCN UI
@@ -23,6 +24,7 @@ For options 1 through 4 below, they will all be completely separate websites, ba
 - OpenAI API (for chatbot)
 
 ### Implementation Stages
+
 1. Stage 1: Base redesign (from separate chat)
 2. Stage 2: + Mortgage Calculator with visual graphs
 3. Stage 3: + AI Chatbot Integration
@@ -31,6 +33,7 @@ For options 1 through 4 below, they will all be completely separate websites, ba
 ## Stage 2: Mortgage Calculator Implementation
 
 ### Features Implemented
+
 - **Loan Details Input**: Home price, down payment, interest rate, loan term, credit score
 - **Extra Payment Analysis**: Optional extra monthly payment field
 - **Interactive Visualization**: Line chart showing loan balance over time
@@ -41,8 +44,24 @@ For options 1 through 4 below, they will all be completely separate websites, ba
 
 ```jsx
 import React, { useState, useEffect } from 'react';
-import { Calculator, DollarSign, Percent, Calendar, TrendingUp, PlusCircle } from 'lucide-react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import {
+  Calculator,
+  DollarSign,
+  Percent,
+  Calendar,
+  TrendingUp,
+  PlusCircle,
+} from 'lucide-react';
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from 'recharts';
 
 const MortgageCalculator = () => {
   const [formData, setFormData] = useState({
@@ -51,7 +70,7 @@ const MortgageCalculator = () => {
     interestRate: 6.5,
     loanTerm: 30,
     creditScore: 'excellent',
-    extraPayment: 0
+    extraPayment: 0,
   });
 
   const [results, setResults] = useState({
@@ -60,29 +79,32 @@ const MortgageCalculator = () => {
     totalAmount: 0,
     downPaymentAmount: 0,
     extraPaymentResults: null,
-    chartData: []
+    chartData: [],
   });
 
   const creditScoreRanges = [
     { value: 'excellent', label: 'Excellent (750+)', rate: 6.0 },
     { value: 'good', label: 'Good (700-749)', rate: 6.5 },
     { value: 'fair', label: 'Fair (650-699)', rate: 7.0 },
-    { value: 'poor', label: 'Poor (600-649)', rate: 8.0 }
+    { value: 'poor', label: 'Poor (600-649)', rate: 8.0 },
   ];
 
   const loanTermOptions = [10, 15, 20, 25, 30];
 
   const calculateMortgage = () => {
-    const principal = formData.homePrice - (formData.homePrice * formData.downPayment / 100);
+    const principal =
+      formData.homePrice - (formData.homePrice * formData.downPayment) / 100;
     const monthlyRate = formData.interestRate / 100 / 12;
     const numberOfPayments = formData.loanTerm * 12;
 
-    const monthlyPayment = principal * (monthlyRate * Math.pow(1 + monthlyRate, numberOfPayments)) /
-                          (Math.pow(1 + monthlyRate, numberOfPayments) - 1);
+    const monthlyPayment =
+      (principal *
+        (monthlyRate * Math.pow(1 + monthlyRate, numberOfPayments))) /
+      (Math.pow(1 + monthlyRate, numberOfPayments) - 1);
 
     const totalAmount = monthlyPayment * numberOfPayments;
     const totalInterest = totalAmount - principal;
-    const downPaymentAmount = formData.homePrice * formData.downPayment / 100;
+    const downPaymentAmount = (formData.homePrice * formData.downPayment) / 100;
 
     // Calculate amortization schedule for chart
     let balance = principal;
@@ -96,11 +118,12 @@ const MortgageCalculator = () => {
       balance -= principalPayment;
       totalInterestPaid += interestPayment;
 
-      if (month % 12 === 0 || month === numberOfPayments) { // Show yearly data points
+      if (month % 12 === 0 || month === numberOfPayments) {
+        // Show yearly data points
         chartData.push({
           year: Math.ceil(month / 12),
           standardBalance: Math.max(0, balance),
-          standardInterest: totalInterestPaid
+          standardInterest: totalInterestPaid,
         });
       }
     }
@@ -125,7 +148,9 @@ const MortgageCalculator = () => {
         extraMonthsPaid = month;
 
         if (month % 12 === 0 || extraBalance <= 0) {
-          const yearIndex = chartData.findIndex(item => item.year === Math.ceil(month / 12));
+          const yearIndex = chartData.findIndex(
+            item => item.year === Math.ceil(month / 12)
+          );
           if (yearIndex !== -1) {
             chartData[yearIndex].extraBalance = Math.max(0, extraBalance);
             chartData[yearIndex].extraInterest = extraTotalInterest;
@@ -145,7 +170,7 @@ const MortgageCalculator = () => {
         interestSaved: interestSaved,
         timeSavedMonths: timeSaved,
         timeSavedYears: Math.floor(timeSaved / 12),
-        timeSavedRemainingMonths: timeSaved % 12
+        timeSavedRemainingMonths: timeSaved % 12,
       };
     }
 
@@ -155,7 +180,7 @@ const MortgageCalculator = () => {
       totalAmount: totalAmount || 0,
       downPaymentAmount,
       extraPaymentResults,
-      chartData
+      chartData,
     });
   };
 
@@ -167,19 +192,21 @@ const MortgageCalculator = () => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleCreditScoreChange = (creditScore) => {
-    const selectedScore = creditScoreRanges.find(score => score.value === creditScore);
+  const handleCreditScoreChange = creditScore => {
+    const selectedScore = creditScoreRanges.find(
+      score => score.value === creditScore
+    );
     setFormData(prev => ({
       ...prev,
       creditScore,
-      interestRate: selectedScore.rate
+      interestRate: selectedScore.rate,
     }));
   };
 
-  const formatCurrency = (amount) => {
+  const formatCurrency = amount => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
-      currency: 'USD'
+      currency: 'USD',
     }).format(amount);
   };
 
@@ -187,14 +214,18 @@ const MortgageCalculator = () => {
     <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg">
       <div className="flex items-center gap-3 mb-6">
         <Calculator className="w-8 h-8 text-blue-600" />
-        <h2 className="text-3xl font-bold text-gray-800">Mortgage Calculator</h2>
+        <h2 className="text-3xl font-bold text-gray-800">
+          Mortgage Calculator
+        </h2>
       </div>
 
       <div className="grid md:grid-cols-2 gap-8">
         {/* Input Section */}
         <div className="space-y-6">
           <div className="bg-gray-50 p-6 rounded-lg">
-            <h3 className="text-xl font-semibold mb-4 text-gray-700">Loan Details</h3>
+            <h3 className="text-xl font-semibold mb-4 text-gray-700">
+              Loan Details
+            </h3>
 
             {/* Home Price */}
             <div className="mb-4">
@@ -205,7 +236,12 @@ const MortgageCalculator = () => {
               <input
                 type="number"
                 value={formData.homePrice}
-                onChange={(e) => handleInputChange('homePrice', parseFloat(e.target.value) || 0)}
+                onChange={e =>
+                  handleInputChange(
+                    'homePrice',
+                    parseFloat(e.target.value) || 0
+                  )
+                }
                 className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 placeholder="300,000"
               />
@@ -220,7 +256,12 @@ const MortgageCalculator = () => {
               <input
                 type="number"
                 value={formData.downPayment}
-                onChange={(e) => handleInputChange('downPayment', parseFloat(e.target.value) || 0)}
+                onChange={e =>
+                  handleInputChange(
+                    'downPayment',
+                    parseFloat(e.target.value) || 0
+                  )
+                }
                 className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 placeholder="20"
                 min="0"
@@ -241,7 +282,12 @@ const MortgageCalculator = () => {
                 type="number"
                 step="0.1"
                 value={formData.interestRate}
-                onChange={(e) => handleInputChange('interestRate', parseFloat(e.target.value) || 0)}
+                onChange={e =>
+                  handleInputChange(
+                    'interestRate',
+                    parseFloat(e.target.value) || 0
+                  )
+                }
                 className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 placeholder="6.5"
               />
@@ -255,11 +301,15 @@ const MortgageCalculator = () => {
               </label>
               <select
                 value={formData.loanTerm}
-                onChange={(e) => handleInputChange('loanTerm', parseInt(e.target.value))}
+                onChange={e =>
+                  handleInputChange('loanTerm', parseInt(e.target.value))
+                }
                 className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               >
                 {loanTermOptions.map(term => (
-                  <option key={term} value={term}>{term} years</option>
+                  <option key={term} value={term}>
+                    {term} years
+                  </option>
                 ))}
               </select>
             </div>
@@ -271,7 +321,7 @@ const MortgageCalculator = () => {
               </label>
               <select
                 value={formData.creditScore}
-                onChange={(e) => handleCreditScoreChange(e.target.value)}
+                onChange={e => handleCreditScoreChange(e.target.value)}
                 className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               >
                 {creditScoreRanges.map(score => (
@@ -291,7 +341,12 @@ const MortgageCalculator = () => {
               <input
                 type="number"
                 value={formData.extraPayment}
-                onChange={(e) => handleInputChange('extraPayment', parseFloat(e.target.value) || 0)}
+                onChange={e =>
+                  handleInputChange(
+                    'extraPayment',
+                    parseFloat(e.target.value) || 0
+                  )
+                }
                 className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 placeholder="0"
                 min="0"
@@ -306,7 +361,9 @@ const MortgageCalculator = () => {
         {/* Results Section */}
         <div className="space-y-6">
           <div className="bg-blue-50 p-6 rounded-lg">
-            <h3 className="text-xl font-semibold mb-4 text-gray-700">Monthly Payment</h3>
+            <h3 className="text-xl font-semibold mb-4 text-gray-700">
+              Monthly Payment
+            </h3>
             <div className="text-4xl font-bold text-blue-600 mb-2">
               {formatCurrency(results.monthlyPayment)}
             </div>
@@ -322,14 +379,18 @@ const MortgageCalculator = () => {
             </div>
 
             <div className="bg-gray-50 p-4 rounded-lg">
-              <h4 className="font-semibold text-gray-700 mb-2">Total Interest</h4>
+              <h4 className="font-semibold text-gray-700 mb-2">
+                Total Interest
+              </h4>
               <p className="text-2xl font-bold text-gray-800">
                 {formatCurrency(results.totalInterest)}
               </p>
             </div>
 
             <div className="bg-gray-50 p-4 rounded-lg">
-              <h4 className="font-semibold text-gray-700 mb-2">Total Amount Paid</h4>
+              <h4 className="font-semibold text-gray-700 mb-2">
+                Total Amount Paid
+              </h4>
               <p className="text-2xl font-bold text-gray-800">
                 {formatCurrency(results.totalAmount)}
               </p>
@@ -337,18 +398,24 @@ const MortgageCalculator = () => {
 
             {results.extraPaymentResults && (
               <div className="bg-green-50 p-4 rounded-lg border-l-4 border-green-400">
-                <h4 className="font-semibold text-green-800 mb-3">Extra Payment Benefits</h4>
+                <h4 className="font-semibold text-green-800 mb-3">
+                  Extra Payment Benefits
+                </h4>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
                     <span className="text-green-700">Interest Saved:</span>
                     <span className="font-bold text-green-800">
-                      {formatCurrency(results.extraPaymentResults.interestSaved)}
+                      {formatCurrency(
+                        results.extraPaymentResults.interestSaved
+                      )}
                     </span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-green-700">Time Saved:</span>
                     <span className="font-bold text-green-800">
-                      {results.extraPaymentResults.timeSavedYears} years, {results.extraPaymentResults.timeSavedRemainingMonths} months
+                      {results.extraPaymentResults.timeSavedYears} years,{' '}
+                      {results.extraPaymentResults.timeSavedRemainingMonths}{' '}
+                      months
                     </span>
                   </div>
                   <div className="flex justify-between">
@@ -364,7 +431,9 @@ const MortgageCalculator = () => {
 
           <div className="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400">
             <p className="text-sm text-yellow-800">
-              <strong>Note:</strong> This calculator provides estimates only. Actual payments may vary based on taxes, insurance, and other factors.
+              <strong>Note:</strong> This calculator provides estimates only.
+              Actual payments may vary based on taxes, insurance, and other
+              factors.
             </p>
           </div>
         </div>
@@ -373,22 +442,32 @@ const MortgageCalculator = () => {
       {/* Chart Section */}
       {results.chartData.length > 0 && (
         <div className="mt-8 bg-white p-6 rounded-lg shadow-sm border">
-          <h3 className="text-xl font-semibold mb-4 text-gray-700">Loan Balance Over Time</h3>
+          <h3 className="text-xl font-semibold mb-4 text-gray-700">
+            Loan Balance Over Time
+          </h3>
           <div className="h-80">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={results.chartData}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis
                   dataKey="year"
-                  label={{ value: 'Year', position: 'insideBottom', offset: -5 }}
+                  label={{
+                    value: 'Year',
+                    position: 'insideBottom',
+                    offset: -5,
+                  }}
                 />
                 <YAxis
-                  tickFormatter={(value) => `$${(value / 1000).toFixed(0)}k`}
-                  label={{ value: 'Remaining Balance', angle: -90, position: 'insideLeft' }}
+                  tickFormatter={value => `$${(value / 1000).toFixed(0)}k`}
+                  label={{
+                    value: 'Remaining Balance',
+                    angle: -90,
+                    position: 'insideLeft',
+                  }}
                 />
                 <Tooltip
                   formatter={(value, name) => [formatCurrency(value), name]}
-                  labelFormatter={(year) => `Year ${year}`}
+                  labelFormatter={year => `Year ${year}`}
                 />
                 <Legend />
                 <Line
@@ -415,7 +494,9 @@ const MortgageCalculator = () => {
 
           {formData.extraPayment > 0 && results.extraPaymentResults && (
             <div className="mt-4 p-4 bg-green-50 rounded-lg">
-              <h4 className="font-semibold text-green-800 mb-2">Impact of ${formData.extraPayment} Extra Monthly Payment:</h4>
+              <h4 className="font-semibold text-green-800 mb-2">
+                Impact of ${formData.extraPayment} Extra Monthly Payment:
+              </h4>
               <div className="grid md:grid-cols-3 gap-4 text-sm">
                 <div className="text-center">
                   <div className="text-2xl font-bold text-green-600">
@@ -425,7 +506,8 @@ const MortgageCalculator = () => {
                 </div>
                 <div className="text-center">
                   <div className="text-2xl font-bold text-green-600">
-                    {results.extraPaymentResults.timeSavedYears}.{results.extraPaymentResults.timeSavedRemainingMonths}
+                    {results.extraPaymentResults.timeSavedYears}.
+                    {results.extraPaymentResults.timeSavedRemainingMonths}
                   </div>
                   <div className="text-green-700">Years Saved</div>
                 </div>
@@ -450,6 +532,7 @@ export default MortgageCalculator;
 ## Stage 3: AI Chatbot Integration
 
 ### Features Implemented
+
 - **Floating Chat Interface**: Minimizable chat widget
 - **Mortgage-Focused AI**: Responses limited to mortgage and real estate topics
 - **Professional UI**: Clean message design with timestamps
@@ -459,7 +542,15 @@ export default MortgageCalculator;
 
 ```jsx
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageCircle, Send, Bot, User, X, Minimize2, Maximize2 } from 'lucide-react';
+import {
+  MessageCircle,
+  Send,
+  Bot,
+  User,
+  X,
+  Minimize2,
+  Maximize2,
+} from 'lucide-react';
 
 const MortgageChatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -468,16 +559,17 @@ const MortgageChatbot = () => {
     {
       id: 1,
       type: 'bot',
-      content: "Hello! I'm your mortgage assistant. I can help you with questions about mortgages, home loans, interest rates, and the buying process. How can I assist you today?",
-      timestamp: new Date()
-    }
+      content:
+        "Hello! I'm your mortgage assistant. I can help you with questions about mortgages, home loans, interest rates, and the buying process. How can I assist you today?",
+      timestamp: new Date(),
+    },
   ]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
   useEffect(() => {
@@ -491,7 +583,7 @@ const MortgageChatbot = () => {
       id: Date.now(),
       type: 'user',
       content: inputValue,
-      timestamp: new Date()
+      timestamp: new Date(),
     };
 
     setMessages(prev => [...prev, userMessage]);
@@ -507,7 +599,7 @@ const MortgageChatbot = () => {
         },
         body: JSON.stringify({
           message: inputValue,
-          context: 'mortgage'
+          context: 'mortgage',
         }),
       });
 
@@ -521,7 +613,7 @@ const MortgageChatbot = () => {
         id: Date.now() + 1,
         type: 'bot',
         content: data.response,
-        timestamp: new Date()
+        timestamp: new Date(),
       };
 
       setMessages(prev => [...prev, botMessage]);
@@ -533,16 +625,17 @@ const MortgageChatbot = () => {
         "I'd be happy to help with your mortgage question. For specific rates and terms, I recommend speaking with one of our loan specialists.",
         "That's a great question about mortgages! Generally, factors like credit score, down payment, and loan term affect your mortgage options.",
         "For the most accurate mortgage information, I'd suggest contacting our office directly. In the meantime, feel free to use our mortgage calculator above.",
-        "Mortgage requirements can vary based on many factors. Would you like me to connect you with one of our mortgage specialists?"
+        'Mortgage requirements can vary based on many factors. Would you like me to connect you with one of our mortgage specialists?',
       ];
 
-      const randomResponse = fallbackResponses[Math.floor(Math.random() * fallbackResponses.length)];
+      const randomResponse =
+        fallbackResponses[Math.floor(Math.random() * fallbackResponses.length)];
 
       const botMessage = {
         id: Date.now() + 1,
         type: 'bot',
         content: randomResponse,
-        timestamp: new Date()
+        timestamp: new Date(),
       };
 
       setMessages(prev => [...prev, botMessage]);
@@ -551,15 +644,18 @@ const MortgageChatbot = () => {
     }
   };
 
-  const handleKeyPress = (e) => {
+  const handleKeyPress = e => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       handleSendMessage();
     }
   };
 
-  const formatTime = (timestamp) => {
-    return timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  const formatTime = timestamp => {
+    return timestamp.toLocaleTimeString([], {
+      hour: '2-digit',
+      minute: '2-digit',
+    });
   };
 
   if (!isOpen) {
@@ -574,9 +670,11 @@ const MortgageChatbot = () => {
   }
 
   return (
-    <div className={`fixed bottom-6 right-6 bg-white rounded-lg shadow-2xl border z-50 transition-all duration-300 ${
-      isMinimized ? 'w-80 h-16' : 'w-96 h-[500px]'
-    }`}>
+    <div
+      className={`fixed bottom-6 right-6 bg-white rounded-lg shadow-2xl border z-50 transition-all duration-300 ${
+        isMinimized ? 'w-80 h-16' : 'w-96 h-[500px]'
+      }`}
+    >
       {/* Header */}
       <div className="bg-blue-600 text-white p-4 rounded-t-lg flex items-center justify-between">
         <div className="flex items-center gap-2">
@@ -588,7 +686,11 @@ const MortgageChatbot = () => {
             onClick={() => setIsMinimized(!isMinimized)}
             className="hover:bg-blue-700 p-1 rounded"
           >
-            {isMinimized ? <Maximize2 className="w-4 h-4" /> : <Minimize2 className="w-4 h-4" />}
+            {isMinimized ? (
+              <Maximize2 className="w-4 h-4" />
+            ) : (
+              <Minimize2 className="w-4 h-4" />
+            )}
           </button>
           <button
             onClick={() => setIsOpen(false)}
@@ -603,31 +705,42 @@ const MortgageChatbot = () => {
         <>
           {/* Messages */}
           <div className="flex-1 p-4 h-80 overflow-y-auto bg-gray-50">
-            {messages.map((message) => (
+            {messages.map(message => (
               <div
                 key={message.id}
                 className={`mb-4 flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
               >
-                <div className={`flex items-start gap-2 max-w-[80%] ${
-                  message.type === 'user' ? 'flex-row-reverse' : 'flex-row'
-                }`}>
-                  <div className={`p-2 rounded-full ${
-                    message.type === 'user' ? 'bg-blue-600' : 'bg-gray-400'
-                  }`}>
-                    {message.type === 'user' ?
-                      <User className="w-4 h-4 text-white" /> :
+                <div
+                  className={`flex items-start gap-2 max-w-[80%] ${
+                    message.type === 'user' ? 'flex-row-reverse' : 'flex-row'
+                  }`}
+                >
+                  <div
+                    className={`p-2 rounded-full ${
+                      message.type === 'user' ? 'bg-blue-600' : 'bg-gray-400'
+                    }`}
+                  >
+                    {message.type === 'user' ? (
+                      <User className="w-4 h-4 text-white" />
+                    ) : (
                       <Bot className="w-4 h-4 text-white" />
-                    }
+                    )}
                   </div>
-                  <div className={`p-3 rounded-lg ${
-                    message.type === 'user'
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-white border shadow-sm'
-                  }`}>
+                  <div
+                    className={`p-3 rounded-lg ${
+                      message.type === 'user'
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-white border shadow-sm'
+                    }`}
+                  >
                     <p className="text-sm">{message.content}</p>
-                    <span className={`text-xs opacity-70 ${
-                      message.type === 'user' ? 'text-blue-100' : 'text-gray-500'
-                    }`}>
+                    <span
+                      className={`text-xs opacity-70 ${
+                        message.type === 'user'
+                          ? 'text-blue-100'
+                          : 'text-gray-500'
+                      }`}
+                    >
                       {formatTime(message.timestamp)}
                     </span>
                   </div>
@@ -644,8 +757,14 @@ const MortgageChatbot = () => {
                   <div className="bg-white border shadow-sm p-3 rounded-lg">
                     <div className="flex space-x-1">
                       <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
-                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+                      <div
+                        className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                        style={{ animationDelay: '0.1s' }}
+                      ></div>
+                      <div
+                        className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                        style={{ animationDelay: '0.2s' }}
+                      ></div>
                     </div>
                   </div>
                 </div>
@@ -660,7 +779,7 @@ const MortgageChatbot = () => {
             <div className="flex gap-2">
               <textarea
                 value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
+                onChange={e => setInputValue(e.target.value)}
                 onKeyPress={handleKeyPress}
                 placeholder="Ask about mortgages, rates, or buying process..."
                 className="flex-1 p-2 border border-gray-300 rounded-md resize-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -705,28 +824,29 @@ export default async function handler(req, res) {
 
   try {
     const completion = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
+      model: 'gpt-3.5-turbo',
       messages: [
         {
-          role: "system",
-          content: `You are a helpful mortgage and real estate assistant. Only answer questions related to mortgages, home loans, real estate buying process, interest rates, down payments, credit scores, and home buying. If asked about unrelated topics, politely redirect the conversation back to mortgage and real estate topics. Keep responses concise and helpful.`
+          role: 'system',
+          content: `You are a helpful mortgage and real estate assistant. Only answer questions related to mortgages, home loans, real estate buying process, interest rates, down payments, credit scores, and home buying. If asked about unrelated topics, politely redirect the conversation back to mortgage and real estate topics. Keep responses concise and helpful.`,
         },
         {
-          role: "user",
-          content: message
-        }
+          role: 'user',
+          content: message,
+        },
       ],
       max_tokens: 150,
       temperature: 0.7,
     });
 
     res.status(200).json({
-      response: completion.choices[0].message.content
+      response: completion.choices[0].message.content,
     });
   } catch (error) {
     console.error('OpenAI API error:', error);
     res.status(500).json({
-      response: "I'm having trouble connecting right now. Please try again later or contact our office directly."
+      response:
+        "I'm having trouble connecting right now. Please try again later or contact our office directly.",
     });
   }
 }
@@ -743,11 +863,13 @@ OPENAI_API_KEY=your_openai_api_key_here
 ### Low-Cost Property Search Options
 
 #### Option 1: RentSpree API
+
 - **Cost**: Free tier with limited requests
 - **Features**: Basic property listings
 - **Implementation**: REST API integration
 
 #### Option 2: RealtyMole API
+
 - **Cost**: $49/month for 1000 requests
 - **Features**: Comprehensive property data
 - **Implementation**: JSON API responses
@@ -759,37 +881,37 @@ OPENAI_API_KEY=your_openai_api_key_here
 const mockProperties = [
   {
     id: 1,
-    address: "123 Oak Street, Winchester, KY",
+    address: '123 Oak Street, Winchester, KY',
     price: 285000,
     bedrooms: 3,
     bathrooms: 2,
     sqft: 1850,
-    image: "/api/placeholder/300/200",
-    listingDate: "2024-01-15",
-    status: "Active"
+    image: '/api/placeholder/300/200',
+    listingDate: '2024-01-15',
+    status: 'Active',
   },
   {
     id: 2,
-    address: "456 Maple Drive, Lexington, KY",
+    address: '456 Maple Drive, Lexington, KY',
     price: 340000,
     bedrooms: 4,
     bathrooms: 3,
     sqft: 2200,
-    image: "/api/placeholder/300/200",
-    listingDate: "2024-01-10",
-    status: "Active"
+    image: '/api/placeholder/300/200',
+    listingDate: '2024-01-10',
+    status: 'Active',
   },
   {
     id: 3,
-    address: "789 Pine Lane, Louisville, KY",
+    address: '789 Pine Lane, Louisville, KY',
     price: 195000,
     bedrooms: 2,
     bathrooms: 2,
     sqft: 1400,
-    image: "/api/placeholder/300/200",
-    listingDate: "2024-01-20",
-    status: "Pending"
-  }
+    image: '/api/placeholder/300/200',
+    listingDate: '2024-01-20',
+    status: 'Pending',
+  },
 ];
 
 // Property Search Component Example
@@ -801,9 +923,13 @@ const PropertySearch = () => {
 
   const handleSearch = () => {
     let filtered = mockProperties.filter(property => {
-      const matchesQuery = property.address.toLowerCase().includes(searchQuery.toLowerCase());
-      const matchesPrice = property.price >= priceRange.min && property.price <= priceRange.max;
-      const matchesBedrooms = bedrooms === 'any' || property.bedrooms >= parseInt(bedrooms);
+      const matchesQuery = property.address
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase());
+      const matchesPrice =
+        property.price >= priceRange.min && property.price <= priceRange.max;
+      const matchesBedrooms =
+        bedrooms === 'any' || property.bedrooms >= parseInt(bedrooms);
 
       return matchesQuery && matchesPrice && matchesBedrooms;
     });
@@ -867,6 +993,7 @@ src/
    - Add billing information (required for API usage)
 
 2. **Environment Configuration**:
+
    ```env
    # .env.local
    OPENAI_API_KEY=sk-your-openai-api-key-here
@@ -877,29 +1004,30 @@ src/
    ```javascript
    // tailwind.config.js
    module.exports = {
-     content: [
-       './src/**/*.{js,ts,jsx,tsx,mdx}',
-     ],
+     content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
      theme: {
        extend: {},
      },
      plugins: [],
-   }
+   };
    ```
 
 ## Cost Analysis
 
 ### OpenAI API Costs
+
 - **GPT-3.5-turbo**: $0.0015 per 1K input tokens, $0.002 per 1K output tokens
 - **Estimated monthly cost**: $10-30 for moderate usage (100-300 conversations)
 - **Cost per conversation**: Approximately $0.05-0.15
 
 ### Property API Costs
+
 - **RealtyMole**: $49/month (1000 requests)
 - **RentSpree**: Free tier (limited requests)
 - **Estimated monthly cost**: $0-49 depending on chosen service
 
 ### Total Monthly Operating Costs
+
 - **Minimal setup**: $10-30 (OpenAI + mock property data)
 - **Full implementation**: $60-80 (OpenAI + RealtyMole)
 
@@ -950,22 +1078,26 @@ src/
 ## Technical Implementation Timeline
 
 ### Week 1: Foundation
+
 - Set up development environment
 - Implement mortgage calculator base functionality
 - Create responsive layout
 
 ### Week 2: Enhanced Features
+
 - Add chart visualization
 - Implement extra payment calculations
 - Polish UI/UX
 
 ### Week 3: AI Integration
+
 - Set up OpenAI account and API
 - Implement chatbot frontend
 - Create backend API endpoint
 - Test and refine responses
 
 ### Week 4: Final Integration
+
 - Combine all components
 - Property search mockup/integration
 - Testing and optimization
@@ -994,18 +1126,18 @@ src/
 
 ```javascript
 // Basic usage tracking
-const trackCalculatorUsage = (calculationType) => {
+const trackCalculatorUsage = calculationType => {
   // Google Analytics or similar
   gtag('event', 'calculator_used', {
-    'event_category': 'engagement',
-    'event_label': calculationType
+    event_category: 'engagement',
+    event_label: calculationType,
   });
 };
 
-const trackChatbotUsage = (messageCount) => {
+const trackChatbotUsage = messageCount => {
   gtag('event', 'chatbot_conversation', {
-    'event_category': 'engagement',
-    'value': messageCount
+    event_category: 'engagement',
+    value: messageCount,
   });
 };
 ```
@@ -1013,14 +1145,16 @@ const trackChatbotUsage = (messageCount) => {
 ## Security Considerations
 
 ### API Key Protection
+
 - Never expose OpenAI API key in frontend code
 - Use environment variables for all sensitive data
 - Implement rate limiting on chat API endpoint
 
 ### Input Validation
+
 ```javascript
 // Input sanitization example
-const sanitizeInput = (input) => {
+const sanitizeInput = input => {
   return input
     .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
     .trim()
@@ -1029,6 +1163,7 @@ const sanitizeInput = (input) => {
 ```
 
 ### Error Handling
+
 - Implement graceful fallbacks for API failures
 - Log errors for monitoring
 - Provide helpful error messages to users
@@ -1036,18 +1171,22 @@ const sanitizeInput = (input) => {
 ## Performance Optimization
 
 ### Code Splitting
+
 ```javascript
 // Lazy load components
-const MortgageCalculator = lazy(() => import('./components/MortgageCalculator'));
+const MortgageCalculator = lazy(
+  () => import('./components/MortgageCalculator')
+);
 const MortgageChatbot = lazy(() => import('./components/MortgageChatbot'));
 
 // Use Suspense for loading states
 <Suspense fallback={<div>Loading...</div>}>
   <MortgageCalculator />
-</Suspense>
+</Suspense>;
 ```
 
 ### Chart Optimization
+
 - Use `useMemo` for expensive calculations
 - Implement chart data caching
 - Optimize re-renders with `useCallback`
@@ -1055,12 +1194,18 @@ const MortgageChatbot = lazy(() => import('./components/MortgageChatbot'));
 ```javascript
 const chartData = useMemo(() => {
   return calculateAmortizationSchedule(formData);
-}, [formData.homePrice, formData.interestRate, formData.loanTerm, formData.extraPayment]);
+}, [
+  formData.homePrice,
+  formData.interestRate,
+  formData.loanTerm,
+  formData.extraPayment,
+]);
 ```
 
 ## Future Enhancements
 
 ### Phase 2 Features
+
 1. **Advanced Calculator Features**:
    - PMI calculations
    - Property tax and insurance estimates
@@ -1080,6 +1225,7 @@ const chartData = useMemo(() => {
    - Neighborhood data and statistics
 
 ### Phase 3 Features
+
 1. **Client Portal**:
    - Document upload and management
    - Loan application progress tracking
@@ -1095,6 +1241,7 @@ const chartData = useMemo(() => {
 ### Common Issues and Solutions
 
 #### OpenAI API Issues
+
 ```javascript
 // Error handling for API failures
 try {
@@ -1112,11 +1259,13 @@ try {
 ```
 
 #### Chart Rendering Issues
+
 - Ensure `recharts` is properly installed
 - Check for conflicting CSS styles
 - Verify data format matches expected structure
 
 #### Mobile Responsiveness
+
 - Test on actual devices, not just browser dev tools
 - Use appropriate breakpoints for chart sizing
 - Ensure touch interactions work properly
@@ -1126,12 +1275,14 @@ try {
 This comprehensive real estate website enhancement project provides a modern, interactive experience that will significantly differentiate your client's business from competitors. The combination of visual mortgage tools, AI assistance, and professional design creates a complete solution that addresses the primary needs of potential home buyers.
 
 ### Key Success Metrics
+
 - **User Engagement**: Time spent on site, pages per session
 - **Lead Generation**: Contact form submissions, chatbot conversations
 - **Calculator Usage**: Frequency and depth of mortgage calculations
 - **Conversion Rate**: Visitors to qualified leads ratio
 
 ### Implementation Priority
+
 1. **High Priority**: Mortgage calculator with visualization (immediate value)
 2. **Medium Priority**: AI chatbot (engagement and lead capture)
 3. **Lower Priority**: Property search (nice-to-have, can use mock data initially)
@@ -1141,17 +1292,20 @@ The staged implementation approach allows for incremental value delivery and bud
 ## Additional Resources
 
 ### Documentation Links
+
 - [React Documentation](https://react.dev/)
 - [TailwindCSS Documentation](https://tailwindcss.com/docs)
 - [Recharts Documentation](https://recharts.org/en-US/)
 - [OpenAI API Documentation](https://platform.openai.com/docs)
 
 ### Design Inspiration
+
 - Modern real estate websites: Zillow, Redfin, Realtor.com
 - Financial calculators: Bankrate, NerdWallet, Mortgage Calculator.net
 - AI chat interfaces: Intercom, Drift, ChatGPT interface
 
 ### Testing Checklist
+
 - [ ] Mortgage calculator accuracy verification
 - [ ] Chart rendering across different screen sizes
 - [ ] Chatbot response quality and relevance

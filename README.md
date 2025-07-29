@@ -19,9 +19,11 @@ The Sparta Mortgage website now includes a comprehensive property search feature
 ### Screenshots
 
 #### Property Search Page
+
 ![Property Search Feature](./docs/screenshots/Sparta_Mortgage_Property_Search.png)
 
 The property search page features:
+
 - **Hero Section**: Gradient background with search form and quick search button
 - **Search Form**: Location input, price range filters, bed/bath dropdowns
 - **Property Grid**: Responsive layout showing property cards with images, prices, and status
@@ -33,17 +35,21 @@ The property search page features:
 The website also includes an advanced mortgage calculator with two main views:
 
 #### Basic Mortgage Calculator
+
 ![Mortgage Calculator Basic](./docs/screenshots/Sparta_Mortgage_Calculator.png)
 
 Features:
+
 - **Loan Details Panel**: Input fields for home price, down payment, interest rate, loan term
 - **Monthly Payment Panel**: Calculated results showing monthly payment, loan amount, total interest
 - **Real-time Calculations**: Instant updates as users modify input values
 
 #### Advanced Mortgage Calculator with Early Payoff
+
 ![Mortgage Calculator Advanced](./docs/screenshots/Sparta_Mortgage_Early_Payoff_Chart.png)
 
 Features:
+
 - **Extra Payment Benefits**: Shows interest saved, time saved, and new loan term
 - **Interactive Graph**: "Loan Balance Over Time" visualization
 - **Comparison Lines**: Standard payment vs. extra payment scenarios
@@ -84,7 +90,7 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 
 ### Key Technologies
 
-- **Next.js 14** - React framework with App Router
+- **Next.js 15.3.3** - React framework with App Router
 - **TypeScript** - Type-safe development
 - **Tailwind CSS** - Utility-first CSS framework
 - **Lucide React** - Icon library

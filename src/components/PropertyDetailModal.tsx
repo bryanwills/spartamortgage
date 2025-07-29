@@ -1,7 +1,19 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { X, Bed, Bath, Square, MapPin, Heart, Share2, Calendar, Phone, Mail, ExternalLink } from 'lucide-react'
+import React from 'react';
+import {
+  X,
+  Bed,
+  Bath,
+  Square,
+  MapPin,
+  Heart,
+  Share2,
+  Calendar,
+  Phone,
+  Mail,
+  ExternalLink,
+} from 'lucide-react';
 
 interface Property {
   id: string;
@@ -29,43 +41,46 @@ interface PropertyDetailModalProps {
   onClose: () => void;
 }
 
-export default function PropertyDetailModal({ property, onClose }: PropertyDetailModalProps) {
+export default function PropertyDetailModal({
+  property,
+  onClose,
+}: PropertyDetailModalProps) {
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
-    }).format(price)
-  }
+    }).format(price);
+  };
 
   const formatDate = (dateString: string) => {
-    const date = new Date(dateString)
+    const date = new Date(dateString);
     return date.toLocaleDateString('en-US', {
       month: 'long',
       day: 'numeric',
-      year: 'numeric'
-    })
-  }
+      year: 'numeric',
+    });
+  };
 
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'Active':
-        return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
+        return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200';
       case 'Pending':
-        return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200'
+        return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200';
       case 'Sold':
-        return 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200'
+        return 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200';
       default:
-        return 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200'
+        return 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200';
     }
-  }
+  };
 
   const handleBackdropClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
-      onClose()
+      onClose();
     }
-  }
+  };
 
   return (
     <div
@@ -95,7 +110,9 @@ export default function PropertyDetailModal({ property, onClose }: PropertyDetai
             </button>
           </div>
           <div className="absolute bottom-4 left-4">
-            <span className={`inline-block px-3 py-1 text-sm font-medium rounded-full ${getStatusColor(property.status)}`}>
+            <span
+              className={`inline-block px-3 py-1 text-sm font-medium rounded-full ${getStatusColor(property.status)}`}
+            >
               {property.status}
             </span>
           </div>
@@ -126,7 +143,9 @@ export default function PropertyDetailModal({ property, onClose }: PropertyDetai
                   {property.bedrooms}
                 </span>
               </div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Bedrooms</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Bedrooms
+              </p>
             </div>
             <div className="text-center">
               <div className="flex items-center justify-center gap-2 mb-2">
@@ -135,7 +154,9 @@ export default function PropertyDetailModal({ property, onClose }: PropertyDetai
                   {property.bathrooms}
                 </span>
               </div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Bathrooms</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Bathrooms
+              </p>
             </div>
             <div className="text-center">
               <div className="flex items-center justify-center gap-2 mb-2">
@@ -144,7 +165,9 @@ export default function PropertyDetailModal({ property, onClose }: PropertyDetai
                   {property.squareFeet.toLocaleString()}
                 </span>
               </div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Square Feet</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Square Feet
+              </p>
             </div>
             <div className="text-center">
               <div className="flex items-center justify-center gap-2 mb-2">
@@ -153,7 +176,9 @@ export default function PropertyDetailModal({ property, onClose }: PropertyDetai
                   {property.yearBuilt || 'N/A'}
                 </span>
               </div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Year Built</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Year Built
+              </p>
             </div>
           </div>
 
@@ -166,7 +191,9 @@ export default function PropertyDetailModal({ property, onClose }: PropertyDetai
               <div className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
                 <div className="flex justify-between">
                   <span>Property Type:</span>
-                  <span className="font-medium text-gray-900 dark:text-white">{property.propertyType}</span>
+                  <span className="font-medium text-gray-900 dark:text-white">
+                    {property.propertyType}
+                  </span>
                 </div>
                 <div className="flex justify-between">
                   <span>Lot Size:</span>
@@ -176,7 +203,9 @@ export default function PropertyDetailModal({ property, onClose }: PropertyDetai
                 </div>
                 <div className="flex justify-between">
                   <span>Listed:</span>
-                  <span className="font-medium text-gray-900 dark:text-white">{formatDate(property.listingDate)}</span>
+                  <span className="font-medium text-gray-900 dark:text-white">
+                    {formatDate(property.listingDate)}
+                  </span>
                 </div>
               </div>
             </div>
@@ -187,15 +216,21 @@ export default function PropertyDetailModal({ property, onClose }: PropertyDetai
               <div className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
                 <div className="flex justify-between">
                   <span>City:</span>
-                  <span className="font-medium text-gray-900 dark:text-white">{property.city}</span>
+                  <span className="font-medium text-gray-900 dark:text-white">
+                    {property.city}
+                  </span>
                 </div>
                 <div className="flex justify-between">
                   <span>State:</span>
-                  <span className="font-medium text-gray-900 dark:text-white">{property.state}</span>
+                  <span className="font-medium text-gray-900 dark:text-white">
+                    {property.state}
+                  </span>
                 </div>
                 <div className="flex justify-between">
                   <span>ZIP Code:</span>
-                  <span className="font-medium text-gray-900 dark:text-white">{property.zipCode}</span>
+                  <span className="font-medium text-gray-900 dark:text-white">
+                    {property.zipCode}
+                  </span>
                 </div>
               </div>
             </div>
@@ -245,5 +280,5 @@ export default function PropertyDetailModal({ property, onClose }: PropertyDetai
         </div>
       </div>
     </div>
-  )
+  );
 }

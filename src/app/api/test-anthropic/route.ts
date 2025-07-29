@@ -11,21 +11,28 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    console.log('Testing Anthropic API with key:', apiKey.substring(0, 10) + '...');
+    console.log(
+      'Testing Anthropic API with key:',
+      apiKey.substring(0, 10) + '...'
+    );
 
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${apiKey}`,
+        Authorization: `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
-        'anthropic-version': '2023-06-01'
+        'anthropic-version': '2023-06-01',
       },
       body: JSON.stringify({
         model: 'claude-3-sonnet-20240229',
         max_tokens: 50,
         messages: [
-          { role: 'user', content: 'Hello, please respond with just "Test successful" if you can read this.' }
-        ]
+          {
+            role: 'user',
+            content:
+              'Hello, please respond with just "Test successful" if you can read this.',
+          },
+        ],
       }),
     });
 
@@ -38,7 +45,7 @@ export async function GET(request: NextRequest) {
         {
           error: 'Anthropic API test failed',
           status: response.status,
-          details: errorData
+          details: errorData,
         },
         { status: 500 }
       );
@@ -50,15 +57,14 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({
       success: true,
       response: data.content[0]?.text,
-      usage: data.usage
+      usage: data.usage,
     });
-
   } catch (error) {
     console.error('Test API error:', error);
     return NextResponse.json(
       {
         error: 'Failed to test Anthropic API',
-        details: error instanceof Error ? error.message : 'Unknown error'
+        details: error instanceof Error ? error.message : 'Unknown error',
       },
       { status: 500 }
     );

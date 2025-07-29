@@ -1,0 +1,42 @@
+version: 2
+updates:
+  # Enable version updates for npm
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+      time: '09:00'
+    # Limit to 10 open pull requests for npm
+    open-pull-requests-limit: 10
+    # Specify labels for pull requests
+    labels:
+      - 'dependencies'
+      - 'automated'
+    # Set reviewers
+    reviewers:
+      - 'bryanwills'
+    # Group minor and patch updates together
+    groups:
+      minor-patch-updates:
+        patterns:
+          - '*'
+        update-types:
+          - 'minor'
+          - 'patch'
+    # Ignore major updates for now (manual review needed)
+    ignore:
+      - dependency-name: '*'
+        update-types:
+          - 'version-update:semver-major'
+    # Commit message format
+    commit-message:
+      prefix: 'chore'
+      prefix-development: 'chore'
+      include: 'scope'
+    # Rebase strategy
+    rebase-strategy: 'auto'
+    # Target branch
+    target-branch: 'main'
+    # Versioning strategy
+    versioning-strategy: 'auto'

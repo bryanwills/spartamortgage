@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import React, { useState, useEffect } from 'react'
-import { Bed, Bath, Square, MapPin, Heart, Share2 } from 'lucide-react'
+import React, { useState, useEffect } from 'react';
+import { Bed, Bath, Square, MapPin, Heart, Share2 } from 'lucide-react';
 
 interface Property {
   id: string;
@@ -25,33 +25,33 @@ interface Property {
 }
 
 export default function FeaturedProperties() {
-  const [properties, setProperties] = useState<Property[]>([])
-  const [loading, setLoading] = useState(true)
-  const [isClient, setIsClient] = useState(false)
+  const [properties, setProperties] = useState<Property[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    setIsClient(true)
-  }, [])
+    setIsClient(true);
+  }, []);
 
   useEffect(() => {
     if (isClient) {
       const fetchFeaturedProperties = async () => {
         try {
-          const response = await fetch('/api/properties?limit=3')
+          const response = await fetch('/api/properties?limit=3');
           if (response.ok) {
-            const data = await response.json()
-            setProperties(data.properties || [])
+            const data = await response.json();
+            setProperties(data.properties || []);
           }
         } catch (error) {
-          console.error('Failed to fetch featured properties:', error)
+          console.error('Failed to fetch featured properties:', error);
         } finally {
-          setLoading(false)
+          setLoading(false);
         }
-      }
+      };
 
-      fetchFeaturedProperties()
+      fetchFeaturedProperties();
     }
-  }, [isClient])
+  }, [isClient]);
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('en-US', {
@@ -59,28 +59,31 @@ export default function FeaturedProperties() {
       currency: 'USD',
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
-    }).format(price)
-  }
+    }).format(price);
+  };
 
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'Active':
-        return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
+        return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200';
       case 'Pending':
-        return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200'
+        return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200';
       case 'Sold':
-        return 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200'
+        return 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200';
       default:
-        return 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200'
+        return 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200';
     }
-  }
+  };
 
   // Prevent hydration mismatch
   if (!isClient) {
     return (
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {[...Array(3)].map((_, i) => (
-          <div key={i} className="bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md animate-pulse">
+          <div
+            key={i}
+            className="bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md animate-pulse"
+          >
             <div className="h-48 bg-gray-300 dark:bg-gray-700 rounded-t-lg"></div>
             <div className="p-4">
               <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded mb-2"></div>
@@ -90,14 +93,17 @@ export default function FeaturedProperties() {
           </div>
         ))}
       </div>
-    )
+    );
   }
 
   if (loading) {
     return (
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {[...Array(3)].map((_, i) => (
-          <div key={i} className="bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md animate-pulse">
+          <div
+            key={i}
+            className="bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md animate-pulse"
+          >
             <div className="h-48 bg-gray-300 dark:bg-gray-700 rounded-t-lg"></div>
             <div className="p-4">
               <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded mb-2"></div>
@@ -107,7 +113,7 @@ export default function FeaturedProperties() {
           </div>
         ))}
       </div>
-    )
+    );
   }
 
   if (properties.length === 0) {
@@ -121,12 +127,12 @@ export default function FeaturedProperties() {
           Check back soon for new listings
         </p>
       </div>
-    )
+    );
   }
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-      {properties.map((property) => (
+      {properties.map(property => (
         <div
           key={property.id}
           className="bg-white dark:bg-gray-800 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700 overflow-hidden group"
@@ -139,7 +145,9 @@ export default function FeaturedProperties() {
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
             />
             <div className="absolute top-3 right-3">
-              <span className={`inline-block px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(property.status)}`}>
+              <span
+                className={`inline-block px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(property.status)}`}
+              >
                 {property.status}
               </span>
             </div>
@@ -207,5 +215,5 @@ export default function FeaturedProperties() {
         </div>
       ))}
     </div>
-  )
+  );
 }

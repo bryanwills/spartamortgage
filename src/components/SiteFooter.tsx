@@ -1,31 +1,37 @@
-import React from "react";
-import { Facebook, Linkedin, Star, MessageCircle, ThumbsUp } from "lucide-react";
+import React from 'react';
+import {
+  Facebook,
+  Linkedin,
+  Star,
+  MessageCircle,
+  ThumbsUp,
+} from 'lucide-react';
 
 const socials = [
   {
-    href: "https://search.google.com/local/reviews?placeid=ChIJ32l-S42naYgRTT7AoGnFdG0",
+    href: 'https://search.google.com/local/reviews?placeid=ChIJ32l-S42naYgRTT7AoGnFdG0',
     icon: <Star className="h-6 w-6" />,
-    alt: "Google Reviews"
+    alt: 'Google Reviews',
   },
   {
-    href: "https://www.facebook.com/pg/mortgagewithnathan/reviews/",
+    href: 'https://www.facebook.com/pg/mortgagewithnathan/reviews/',
     icon: <Facebook className="h-6 w-6" />,
-    alt: "Facebook Reviews"
+    alt: 'Facebook Reviews',
   },
   {
-    href: "https://www.angieslist.com/companylist/us/ky/louisville/mortgage-with-nathan-reviews-9015871.htm",
+    href: 'https://www.angieslist.com/companylist/us/ky/louisville/mortgage-with-nathan-reviews-9015871.htm',
     icon: <ThumbsUp className="h-6 w-6" />,
-    alt: "Angie's List Reviews"
+    alt: "Angie's List Reviews",
   },
   {
-    href: "https://www.linkedin.com/in/nathandelpapa",
+    href: 'https://www.linkedin.com/in/nathandelpapa',
     icon: <Linkedin className="h-6 w-6" />,
-    alt: "LinkedIn"
+    alt: 'LinkedIn',
   },
   {
-    href: "https://www.yelp.com/biz/nathan-delpapa-louisville?utm_campaign=Sep-06-2017&utm_medium=email&utm_source=personal_stats",
+    href: 'https://www.yelp.com/biz/nathan-delpapa-louisville?utm_campaign=Sep-06-2017&utm_medium=email&utm_source=personal_stats',
     icon: <MessageCircle className="h-6 w-6" />,
-    alt: "Yelp Reviews"
+    alt: 'Yelp Reviews',
   },
 ];
 
@@ -56,7 +62,8 @@ export default function SiteFooter() {
           >
             Privacy Policy
           </a>
-          &copy; <span id="year">{new Date().getFullYear()}</span> Sparta Mortgage. All rights reserved.
+          &copy; <span id="year">{new Date().getFullYear()}</span> Sparta
+          Mortgage. All rights reserved.
         </div>
       </div>
     </footer>
