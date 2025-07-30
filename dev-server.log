@@ -1,0 +1,113 @@
+[07-30-2025 12:40:28] 
+[07-30-2025 12:40:28] > sparta-mortgage@0.1.0 dev /home/bryanwi09/sparta-mortgage
+[07-30-2025 12:40:28] > next dev --turbopack
+[07-30-2025 12:40:28] 
+[07-30-2025 12:40:30]    ▲ Next.js 15.3.5 (Turbopack)
+[07-30-2025 12:40:30]    - Local:        http://localhost:3000
+[07-30-2025 12:40:30]    - Network:      http://38.45.65.66:3000
+[07-30-2025 12:40:30]    - Environments: .env
+[07-30-2025 12:40:30] 
+[07-30-2025 12:40:30]  ✓ Starting...
+[07-30-2025 12:40:30]  ⚠ Invalid next.config.js options detected: 
+[07-30-2025 12:40:30]  ⚠     Unrecognized key(s) in object: 'allowedDevOrigins' at "experimental"
+[07-30-2025 12:40:30]  ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+[07-30-2025 12:40:31]  ✓ Compiled middleware in 448ms
+[07-30-2025 12:40:32]  ✓ Ready in 2.2s
+[07-30-2025 12:40:41] 🔍 [2025-07-30T16:40:41.795Z] GET /
+[07-30-2025 12:40:41]    IP: ::ffff:99.125.236.29
+[07-30-2025 12:40:41]    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+[07-30-2025 12:40:41]    Referer: direct
+[07-30-2025 12:40:41]    ---
+[07-30-2025 12:40:42]  ○ Compiling / ...
+[07-30-2025 12:40:45]  ✓ Compiled / in 4s
+[07-30-2025 12:40:46]  GET / 200 in 4699ms
+[07-30-2025 12:40:47]  ⚠ Cross origin request detected from 38.45.65.66 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+[07-30-2025 12:40:47] Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+[07-30-2025 12:40:47]  ○ Compiling /api/properties ...
+[07-30-2025 12:40:48]  ✓ Compiled /api/properties in 972ms
+[07-30-2025 12:40:48] Bridge API integration not yet implemented, using mock data
+[07-30-2025 12:40:48]  GET /api/properties?limit=3 200 in 1091ms
+[07-30-2025 12:40:50] 🔍 [2025-07-30T16:40:50.410Z] GET /about
+[07-30-2025 12:40:50]    IP: ::ffff:99.125.236.29
+[07-30-2025 12:40:50]    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+[07-30-2025 12:40:50]    Referer: http://38.45.65.66:3000/
+[07-30-2025 12:40:50]    ---
+[07-30-2025 12:40:50]  ○ Compiling /about ...
+[07-30-2025 12:40:51]  ✓ Compiled /about in 1346ms
+[07-30-2025 12:40:51]  GET /about 200 in 1407ms
+[07-30-2025 12:41:04] 🔍 [2025-07-30T16:41:04.990Z] GET /about
+[07-30-2025 12:41:04]    IP: ::ffff:99.125.236.29
+[07-30-2025 12:41:04]    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:140.0) Gecko/20100101 Firefox/140.0
+[07-30-2025 12:41:04]    Referer: direct
+[07-30-2025 12:41:04]    ---
+[07-30-2025 12:41:05]  GET /about 200 in 190ms
+[07-30-2025 12:41:06]  ○ Compiling /favicon.ico ...
+[07-30-2025 12:41:06]  ✓ Compiled /favicon.ico in 645ms
+[07-30-2025 12:41:06]  GET /favicon.ico?favicon.45db1c09.ico 200 in 913ms
+[07-30-2025 12:41:06]  GET /favicon.ico?favicon.45db1c09.ico 200 in 923ms
+[07-30-2025 12:41:13] 🔍 [2025-07-30T16:41:13.573Z] GET /testimonials
+[07-30-2025 12:41:13]    IP: ::ffff:99.125.236.29
+[07-30-2025 12:41:13]    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:140.0) Gecko/20100101 Firefox/140.0
+[07-30-2025 12:41:13]    Referer: http://38.45.65.66:3000/about
+[07-30-2025 12:41:13]    ---
+[07-30-2025 12:41:14]  ○ Compiling /testimonials ...
+[07-30-2025 12:41:15]  ✓ Compiled /testimonials in 1533ms
+[07-30-2025 12:41:15]  GET /testimonials 200 in 1612ms
+[07-30-2025 12:41:18] 🔍 [2025-07-30T16:41:18.560Z] GET /testimonials
+[07-30-2025 12:41:18]    IP: ::ffff:99.125.236.29
+[07-30-2025 12:41:18]    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:140.0) Gecko/20100101 Firefox/140.0
+[07-30-2025 12:41:18]    Referer: http://38.45.65.66:3000/testimonials
+[07-30-2025 12:41:18]    ---
+[07-30-2025 12:41:18]  GET /testimonials 200 in 65ms
+[07-30-2025 12:41:20] 🔍 [2025-07-30T16:41:20.992Z] GET /apply
+[07-30-2025 12:41:20]    IP: ::ffff:99.125.236.29
+[07-30-2025 12:41:20]    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:140.0) Gecko/20100101 Firefox/140.0
+[07-30-2025 12:41[07-30-2025 12:43:14]  ✓ Compiled middleware in 4ms
+[07-30-2025 12:43:14]  ✓ Compiled in 187ms
+1:21]  ○ Compiling /apply ...
+[07-30-2025 12:41:23]  ✓ Compiled /apply in 2.9s
+[07-30-2025 12:41:24]  GET /apply 200 in 3007ms
+[07-30-2025 12:42:29] 🔍 [2025-07-30T16:42:29.445Z] GET /apply
+[07-30-2025 12:42:29]    IP: ::ffff:99.125.236.29
+[07-30-2025 12:42:29]    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:140.0) Gecko/20100101 Firefox/140.0
+[07-30-2025 12:42:29]    Referer: direct
+[07-30-2025 12:42:29]    ---
+[07-30-2025 12:42:29]  GET /apply 200 in 486ms
+[07-30-2025 12:42:36] 🔍 [2025-07-30T16:42:36.011Z] GET /contact
+[07-30-2025 12:42:36]    IP: ::ffff:99.125.236.29
+[07-30-2025 12:42:36]    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:140.0) Gecko/20100101 Firefox/140.0
+[07-30-2025 12:42:36]    Referer: http://38.45.65.66:3000/apply
+[07-30-2025 12:42:36]    ---
+[07-30-2025 12:42:36]  ○ Compiling /contact ...
+[07-30-2025 12:42:40]  ✓ Compiled /contact in 4.6s
+[07-30-2025 12:42:40]  GET /contact 200 in 4658ms
+[07-30-2025 12:42:43] 🔍 [2025-07-30T16:42:43.033Z] GET /contact
+[07-30-2025 12:42:43]    IP: ::ffff:99.125.236.29
+[07-30-2025 12:42:43]    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+[07-30-2025 12:42:43]    Referer: http://38.45.65.66:3000/about
+[07-30-2025 12:42:43]    ---
+[07-30-2025 12:42:43]  GET /contact 200 in 71ms
+[07-30-2025 12:43:14]  ✓ Compiled middleware in 5ms
+[07-30-2025 12:43:14]  ✓ Compiled in 186ms
+[07-30-2025 12:43:21] 🔍 [2025-07-30T16:43:21.774Z] GET /contact
+[07-30-2025 12:43:21]    IP: ::ffff:99.125.236.29
+[07-30-2025 12:43:21]    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+[07-30-2025 12:43:21]    Referer: direct
+[07-30-2025 12:43:21]    ---
+[07-30-2025 12:43:21]  GET /contact 200 in 201ms
+[07-30-2025 12:43:23]  GET /favicon.ico?favicon.45db1c09.ico 200 in 252ms
+[07-30-2025 12:43:28] 🔍 [2025-07-30T16:43:28.401Z] GET /
+[07-30-2025 12:43:28]    IP: ::ffff:99.125.236.29
+[07-30-2025 12:43:28]    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+[07-30-2025 12:43:28]    Referer: http://38.45.65.66:3000/contact
+[07-30-2025 12:43:28]    ---
+[07-30-2025 12:43:28]  GET / 200 in 169ms
+[07-30-2025 12:43:29] Bridge API integration not yet implemented, using mock data
+[07-30-2025 12:43:29]  GET /api/properties?limit=3 200 in 51ms
+[07-30-2025 12:43:32] 🔍 [2025-07-30T16:43:32.747Z] GET /contact
+[07-30-2025 12:43:32]    IP: ::ffff:99.125.236.29
+[07-30-2025 12:43:32]    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+[07-30-2025 12:43:32]    Referer: http://38.45.65.66:3000/
+[07-30-2025 12:43:32]    ---
+[07-30-2025 12:43:32]  GET /contact 200 in 56ms
+[07-30-2025 12:48:00]  ✓ Compiled in 233ms
