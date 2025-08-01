@@ -87,10 +87,10 @@ export default function TestimonialsPage() {
             <div className="bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-lg relative">
               <Quote className="w-8 h-8 text-red-500 mb-4" />
               <p className="text-gray-600 dark:text-gray-300 mb-6 italic leading-relaxed text-base">
-                "From the very start Nathan was upbeat and positive. He gave me
-                confidence in the process... He's a friend, a confidant and a
-                mortgage guru all in one, I couldn't have done this without
-                Nathan. He's number 1 in my book."
+                &ldquo;From the very start Nathan was upbeat and positive. He gave me
+                confidence in the process... He&apos;s a friend, a confidant and a
+                mortgage guru all in one, I couldn&apos;t have done this without
+                Nathan. He&apos;s number 1 in my book.&rdquo;
               </p>
               <div className="flex items-center">
                 <div className="w-12 h-12 bg-gradient-to-r from-red-500 to-yellow-500 rounded-full flex items-center justify-center text-white font-bold">
@@ -111,9 +111,9 @@ export default function TestimonialsPage() {
             <div className="bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-lg relative">
               <Quote className="w-8 h-8 text-red-500 mb-4" />
               <p className="text-gray-600 dark:text-gray-300 mb-6 italic leading-relaxed text-base">
-                "Nathan eased the entire process of buying our dream home. He is
+                &ldquo;Nathan eased the entire process of buying our dream home. He is
                 an excellent communicator and delivers on his promises... He has
-                a wonderful personality and we really enjoyed working with him."
+                a wonderful personality and we really enjoyed working with him.&rdquo;
               </p>
               <div className="flex items-center">
                 <div className="w-12 h-12 bg-gradient-to-r from-red-500 to-yellow-500 rounded-full flex items-center justify-center text-white font-bold">
@@ -134,10 +134,10 @@ export default function TestimonialsPage() {
             <div className="bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-lg relative">
               <Quote className="w-8 h-8 text-red-500 mb-4" />
               <p className="text-gray-600 dark:text-gray-300 mb-6 italic leading-relaxed text-base">
-                "Nathan provided excellent service during our VA home loan... We
+                &ldquo;Nathan provided excellent service during our VA home loan... We
                 are first time home buyers and Nathan made the whole process a
                 breeze and as stress free as possible. I will be using Nathan
-                again in the future."
+                again in the future.&rdquo;
               </p>
               <div className="flex items-center">
                 <div className="w-12 h-12 bg-gradient-to-r from-red-500 to-yellow-500 rounded-full flex items-center justify-center text-white font-bold">
@@ -158,10 +158,10 @@ export default function TestimonialsPage() {
             <div className="bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-lg relative">
               <Quote className="w-8 h-8 text-red-500 mb-4" />
               <p className="text-gray-600 dark:text-gray-300 mb-6 italic leading-relaxed text-base">
-                "Nathan was very thorough in explaining the process... His
+                &ldquo;Nathan was very thorough in explaining the process... His
                 response time and getting documents was highly effective. This
                 guy is great, his business skills are unmatched, and he is very
-                knowledgeable."
+                knowledgeable.&rdquo;
               </p>
               <div className="flex items-center">
                 <div className="w-12 h-12 bg-gradient-to-r from-red-500 to-yellow-500 rounded-full flex items-center justify-center text-white font-bold">
@@ -182,9 +182,9 @@ export default function TestimonialsPage() {
             <div className="bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-lg relative">
               <Quote className="w-8 h-8 text-red-500 mb-4" />
               <p className="text-gray-600 dark:text-gray-300 mb-6 italic leading-relaxed text-base">
-                "We had been told No in the past... We call him the dream maker!
+                &ldquo;We had been told No in the past... We call him the dream maker!
                 He was able to work with our specific situation and get us the
-                loan we needed for our Dream House!"
+                loan we needed for our Dream House!&rdquo;
               </p>
               <div className="flex items-center">
                 <div className="w-12 h-12 bg-gradient-to-r from-red-500 to-yellow-500 rounded-full flex items-center justify-center text-white font-bold">
@@ -205,9 +205,9 @@ export default function TestimonialsPage() {
             <div className="bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-lg relative">
               <Quote className="w-8 h-8 text-red-500 mb-4" />
               <p className="text-gray-600 dark:text-gray-300 mb-6 italic leading-relaxed text-base">
-                "We have worked through at least four deals with Nathan over the
+                &ldquo;We have worked through at least four deals with Nathan over the
                 past 8 years... We have recommended Nathan to many friends with
-                great results. I won't use another mortgage broker!"
+                great results. I won&apos;t use another mortgage broker!&rdquo;
               </p>
               <div className="flex items-center">
                 <div className="w-12 h-12 bg-gradient-to-r from-red-500 to-yellow-500 rounded-full flex items-center justify-center text-white font-bold">
@@ -229,8 +229,8 @@ export default function TestimonialsPage() {
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg">
               <p className="text-gray-600 dark:text-gray-300 text-sm italic mb-3">
-                "I was surprised at how fast he was able to complete the loan.
-                Very professional and eager to help."
+                &ldquo;I was surprised at how fast he was able to complete the loan.
+                Very professional and eager to help.&rdquo;
               </p>
               <p className="font-semibold text-gray-900 dark:text-white">
                 - Demani
@@ -238,8 +238,8 @@ export default function TestimonialsPage() {
             </div>
             <div className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg">
               <p className="text-gray-600 dark:text-gray-300 text-sm italic mb-3">
-                "Nathan is a great Loan Officer! Very thorough and precise! Got
-                my clients a great rate on their VA Loan!"
+                &ldquo;Nathan is a great Loan Officer! Very thorough and precise! Got
+                my clients a great rate on their VA Loan!&rdquo;
               </p>
               <p className="font-semibold text-gray-900 dark:text-white">
                 - Thai
@@ -247,8 +247,8 @@ export default function TestimonialsPage() {
             </div>
             <div className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg">
               <p className="text-gray-600 dark:text-gray-300 text-sm italic mb-3">
-                "I cannot imagine a refinance going any smoother. He even sent
-                someone to our house to sign papers!"
+                &ldquo;I cannot imagine a refinance going any smoother. He even sent
+                someone to our house to sign papers!&rdquo;
               </p>
               <p className="font-semibold text-gray-900 dark:text-white">
                 - Ellen

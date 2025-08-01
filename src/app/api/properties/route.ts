@@ -32,7 +32,7 @@ interface Property {
 }
 
 // Mock data for demonstration
-export const mockProperties: Property[] = [
+const mockProperties: Property[] = [
   {
     id: '1',
     address: '123 Oak Street',
@@ -261,27 +261,24 @@ function sortProperties(properties: Property[], sortBy?: string): Property[] {
 }
 
 export async function GET(request: NextRequest) {
-  try {
-    const { searchParams } = new URL(request.url);
+  const { searchParams } = new URL(request.url)
+  const limit = searchParams.get('limit')
+  const search = searchParams.get('search')
+  const minPrice = searchParams.get('minPrice')
+  const maxPrice = searchParams.get('maxPrice')
+  const propertyType = searchParams.get('propertyType')
+  const bedrooms = searchParams.get('bedrooms')
+  const bathrooms = searchParams.get('bathrooms')
 
+  try {
     const params: PropertySearchParams = {
-      location: searchParams.get('location') || undefined,
-      minPrice: searchParams.get('minPrice')
-        ? parseInt(searchParams.get('minPrice')!)
-        : undefined,
-      maxPrice: searchParams.get('maxPrice')
-        ? parseInt(searchParams.get('maxPrice')!)
-        : undefined,
-      beds: searchParams.get('beds')
-        ? parseInt(searchParams.get('beds')!)
-        : undefined,
-      baths: searchParams.get('baths')
-        ? parseInt(searchParams.get('baths')!)
-        : undefined,
-      sortBy: (searchParams.get('sortBy') as any) || undefined,
-      limit: searchParams.get('limit')
-        ? parseInt(searchParams.get('limit')!)
-        : undefined,
+      location: search || undefined,
+      minPrice: minPrice ? parseInt(minPrice) : undefined,
+      maxPrice: maxPrice ? parseInt(maxPrice) : undefined,
+      beds: bedrooms ? parseInt(bedrooms) : undefined,
+      baths: bathrooms ? parseInt(bathrooms) : undefined,
+      sortBy: (searchParams.get('sortBy') as 'price_low' | 'price_high' | 'date' | 'distance') || undefined,
+      limit: limit ? parseInt(limit) : undefined,
     };
 
     // Get properties from Bridge API or fallback to mock data

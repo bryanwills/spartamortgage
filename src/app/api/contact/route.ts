@@ -1,22 +1,8 @@
-import { NextRequest, NextResponse } from 'next/server';
-
-interface ContactFormData {
-  name: string;
-  email: string;
-  phone?: string;
-  company?: string;
-  message?: string;
-  preferredContact: 'email' | 'phone';
-  chatbotContext?: Array<{
-    role: 'user' | 'assistant';
-    content: string;
-    timestamp: string;
-  }>;
-}
+import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(request: NextRequest) {
   try {
-    const body: ContactFormData = await request.json();
+    const body = await request.json()
 
     // Validate required fields
     if (!body.name || !body.email) {

@@ -40,7 +40,7 @@ export default function SiteFooter() {
     <footer className="bg-gray-900 text-white py-8">
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4 px-4">
         <div className="flex gap-4 mb-4 md:mb-0">
-          {socials.map((social, index) => (
+          {socials.map((social) => (
             <a
               key={social.href}
               href={social.href}

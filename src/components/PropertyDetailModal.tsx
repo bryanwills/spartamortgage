@@ -11,7 +11,6 @@ import {
   Share2,
   Calendar,
   Phone,
-  Mail,
   ExternalLink,
 } from 'lucide-react';
 

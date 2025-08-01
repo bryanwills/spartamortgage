@@ -84,7 +84,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
           </h4>
         </div>
         <div className="space-y-2 max-h-32 overflow-y-auto">
-          {chatbotMessages.map((msg, index) => (
+          {chatbotMessages.map((msg) => (
             <div key={msg.id} className="text-xs">
               <span className="font-medium text-gray-600 dark:text-gray-400">
                 {msg.role === 'user' ? 'Visitor' : 'Assistant'}:

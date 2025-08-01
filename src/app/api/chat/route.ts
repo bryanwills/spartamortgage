@@ -5,14 +5,9 @@ interface ChatMessage {
   content: string;
 }
 
-interface ChatRequest {
-  message: string;
-  conversationHistory: ChatMessage[];
-}
-
 export async function POST(request: NextRequest) {
   try {
-    const body: ChatRequest = await request.json();
+    const body = await request.json()
     const { message, conversationHistory } = body;
 
     if (!process.env.OPENROUTER_API_KEY) {
