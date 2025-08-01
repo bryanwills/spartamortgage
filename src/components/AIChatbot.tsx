@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { MessageCircle, X, Send, User, Bot, Phone, Mail } from 'lucide-react';
+import { Send, MessageSquare, User, Phone, Building } from 'lucide-react';
 
 interface Message {
   id: string;
@@ -12,6 +12,13 @@ interface Message {
 
 interface ChatbotProps {
   onContactRequest?: (messages: Message[]) => void;
+}
+
+interface SavedMessage {
+  id: string
+  role: 'user' | 'assistant'
+  content: string
+  timestamp: string
 }
 
 const AIChatbot: React.FC<ChatbotProps> = ({ onContactRequest }) => {
@@ -29,7 +36,7 @@ const AIChatbot: React.FC<ChatbotProps> = ({ onContactRequest }) => {
       try {
         const parsedMessages = JSON.parse(savedMessages);
         setMessages(
-          parsedMessages.map((msg: any) => ({
+          parsedMessages.map((msg: SavedMessage) => ({
             ...msg,
             timestamp: new Date(msg.timestamp),
           }))
@@ -61,58 +68,6 @@ const AIChatbot: React.FC<ChatbotProps> = ({ onContactRequest }) => {
       setTimeout(() => inputRef.current?.focus(), 100);
     }
   }, [isOpen]);
-
-  const websiteContent = {
-    mortgageCalculator: {
-      title: 'Mortgage Calculator',
-      description:
-        'Interactive calculator to estimate monthly payments, total interest, and see how extra payments can save thousands.',
-      features: [
-        'Loan amount calculation',
-        'Interest rate analysis',
-        'Extra payment benefits',
-        'Amortization charts',
-        'Payment comparison',
-      ],
-    },
-    loanPrograms: {
-      title: 'Loan Programs',
-      description:
-        'Comprehensive mortgage solutions including conventional, FHA, VA, USDA, and jumbo loans.',
-      programs: [
-        'Conventional Loans (3-20% down)',
-        'FHA Loans (3.5% minimum down)',
-        'VA Loans (0% down for veterans)',
-        'USDA Loans (0% down for rural areas)',
-        'Jumbo Loans (high-value properties)',
-        'Refinance options',
-      ],
-    },
-    application: {
-      title: 'Mortgage Application',
-      description:
-        'Streamlined application process with access to multiple loan programs and competitive rates.',
-      process: [
-        'Online application',
-        'Document upload',
-        'Credit check',
-        'Rate lock',
-        'Closing coordination',
-      ],
-    },
-    company: {
-      name: 'Sparta Mortgage',
-      description:
-        'Professional mortgage services with competitive rates and personalized solutions.',
-      services: [
-        'Residential mortgages',
-        'Refinancing',
-        'First-time homebuyer assistance',
-        'Veteran benefits',
-        'Rural development loans',
-      ],
-    },
-  };
 
   const getContextualResponse = (userMessage: string): string => {
     const lowerMessage = userMessage.toLowerCase();
@@ -280,9 +235,9 @@ const AIChatbot: React.FC<ChatbotProps> = ({ onContactRequest }) => {
         aria-label="Open chat"
       >
         {isOpen ? (
-          <X className="w-6 h-6" />
+          <MessageSquare className="w-6 h-6" />
         ) : (
-          <MessageCircle className="w-6 h-6" />
+          <MessageSquare className="w-6 h-6" />
         )}
       </button>
 
@@ -293,14 +248,14 @@ const AIChatbot: React.FC<ChatbotProps> = ({ onContactRequest }) => {
           <div className="bg-gradient-to-r from-red-600 to-yellow-500 text-white p-4 rounded-t-2xl">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
-                <Bot className="w-5 h-5" />
+                <Building className="w-5 h-5" />
                 <h3 className="font-semibold">Sparta Mortgage Assistant</h3>
               </div>
               <button
                 onClick={() => setIsOpen(false)}
                 className="text-white hover:text-gray-200 transition-colors"
               >
-                <X className="w-5 h-5" />
+                <MessageSquare className="w-5 h-5" />
               </button>
             </div>
             <p className="text-sm text-white/90 mt-1">
@@ -313,7 +268,7 @@ const AIChatbot: React.FC<ChatbotProps> = ({ onContactRequest }) => {
           <div className="flex-1 overflow-y-auto p-4 space-y-4">
             {messages.length === 0 && (
               <div className="text-center text-gray-500 dark:text-gray-400 py-8">
-                <Bot className="w-12 h-12 mx-auto mb-2 text-gray-400" />
+                <Building className="w-12 h-12 mx-auto mb-2 text-gray-400" />
                 <p className="text-sm">
                   Hello! I'm here to help with your mortgage questions.
                 </p>
@@ -338,7 +293,7 @@ const AIChatbot: React.FC<ChatbotProps> = ({ onContactRequest }) => {
                 >
                   <div className="flex items-start space-x-2">
                     {message.role === 'assistant' && (
-                      <Bot className="w-4 h-4 mt-1 flex-shrink-0" />
+                      <Building className="w-4 h-4 mt-1 flex-shrink-0" />
                     )}
                     <div className="flex-1">
                       <p className="text-sm">{message.content}</p>
@@ -361,7 +316,7 @@ const AIChatbot: React.FC<ChatbotProps> = ({ onContactRequest }) => {
               <div className="flex justify-start">
                 <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl px-4 py-2">
                   <div className="flex items-center space-x-2">
-                    <Bot className="w-4 h-4" />
+                    <Building className="w-4 h-4" />
                     <div className="flex space-x-1">
                       <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
                       <div

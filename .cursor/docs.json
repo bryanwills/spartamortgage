@@ -35,6 +35,10 @@
     {
       "name": "Bridge Data Output Docs",
       "url": "https://bridgedataoutput.com/docs/platform/"
+    },
+    {
+      "name": "Apple Developer Documentation",
+      "url": "https://developer.apple.com/documentation/"
     }
   ]
 }

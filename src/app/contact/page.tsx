@@ -44,62 +44,64 @@ export default function ContactPage() {
 
             {/* Contact Information */}
             <div className="text-white">
-              <h3 className="text-2xl font-bold mb-8">Get In Touch</h3>
+              <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 mb-8">
+                <h3 className="text-2xl font-bold mb-6">Get In Touch</h3>
 
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <MapPin className="w-6 h-6 text-yellow-300 mt-1 flex-shrink-0" />
-                  <div>
-                    <p className="font-semibold mb-1">Serving:</p>
-                    <p className="text-white/90">
-                      Kentucky, Indiana, Florida & Georgia
-                    </p>
+                <div className="space-y-6">
+                  <div className="flex items-start space-x-4">
+                    <MapPin className="w-6 h-6 text-yellow-300 mt-1 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold mb-1">Serving:</p>
+                      <p className="text-white/90">
+                        Kentucky, Indiana, Florida & Georgia
+                      </p>
+                    </div>
                   </div>
-                </div>
 
-                <div className="flex items-start space-x-4">
-                  <Phone className="w-6 h-6 text-yellow-300 mt-1 flex-shrink-0" />
-                  <div>
-                    <p className="font-semibold mb-1">Phone:</p>
-                    <a
-                      href="tel:+15028191739"
-                      className="text-white/90 hover:text-yellow-300 transition-colors"
-                    >
-                      (502) 819-1739
-                    </a>
+                  <div className="flex items-start space-x-4">
+                    <Phone className="w-6 h-6 text-yellow-300 mt-1 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold mb-1">Phone:</p>
+                      <a
+                        href="tel:+15028191739"
+                        className="text-white/90 hover:text-yellow-300 transition-colors"
+                      >
+                        (502) 819-1739
+                      </a>
+                    </div>
                   </div>
-                </div>
 
-                <div className="flex items-start space-x-4">
-                  <Mail className="w-6 h-6 text-yellow-300 mt-1 flex-shrink-0" />
-                  <div>
-                    <p className="font-semibold mb-1">Email:</p>
-                    <a
-                      href="mailto:nathan@spartamortgage.com"
-                      className="text-white/90 hover:text-yellow-300 transition-colors"
-                    >
-                      nathan@spartamortgage.com
-                    </a>
+                  <div className="flex items-start space-x-4">
+                    <Mail className="w-6 h-6 text-yellow-300 mt-1 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold mb-1">Email:</p>
+                      <a
+                        href="mailto:nathan@spartamortgage.com"
+                        className="text-white/90 hover:text-yellow-300 transition-colors"
+                      >
+                        nathan@spartamortgage.com
+                      </a>
+                    </div>
                   </div>
-                </div>
 
-                <div className="flex items-start space-x-4">
-                  <CheckCircle className="w-6 h-6 text-yellow-300 mt-1 flex-shrink-0" />
-                  <div>
-                    <p className="font-semibold mb-1">NMLS License</p>
-                    <p className="text-white/90">1857586 & 51796</p>
+                  <div className="flex items-start space-x-4">
+                    <CheckCircle className="w-6 h-6 text-yellow-300 mt-1 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold mb-1">NMLS License</p>
+                      <p className="text-white/90">1857586 & 51796</p>
+                    </div>
                   </div>
-                </div>
 
-                <div className="flex items-start space-x-4">
-                  <MapPin className="w-6 h-6 text-yellow-300 mt-1 flex-shrink-0" />
-                  <div>
-                    <p className="font-semibold mb-1">Office Address</p>
-                    <p className="text-white/90">
-                      11037 Radleigh Lane
-                      <br />
-                      Louisville, KY 40291
-                    </p>
+                  <div className="flex items-start space-x-4">
+                    <MapPin className="w-6 h-6 text-yellow-300 mt-1 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold mb-1">Office Address</p>
+                      <p className="text-white/90">
+                        11037 Radleigh Lane
+                        <br />
+                        Louisville, KY 40291
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>

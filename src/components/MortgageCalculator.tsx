@@ -1,14 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import {
-  Calculator,
-  DollarSign,
-  Percent,
-  Calendar,
-  TrendingUp,
-  PlusCircle,
-} from 'lucide-react';
+import React, { useState, useEffect } from 'react'
 import {
   LineChart,
   Line,
@@ -16,9 +8,44 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
-} from 'recharts';
+  BarChart,
+  Bar,
+} from 'recharts'
+import {
+  DollarSign,
+  Percent,
+  TrendingUp,
+  Calendar,
+  PlusCircle,
+} from 'lucide-react'
+
+interface ChartDataPoint {
+  year: number
+  standardBalance: number
+  standardInterest: number
+  extraBalance?: number
+  extraInterest?: number
+}
+
+interface ExtraPaymentResults {
+  monthsPaid: number
+  yearsPaid: number
+  totalInterest: number
+  interestSaved: number
+  timeSavedMonths: number
+  timeSavedYears: number
+  timeSavedRemainingMonths: number
+}
+
+interface Results {
+  monthlyPayment: number
+  totalInterest: number
+  totalAmount: number
+  downPaymentAmount: number
+  extraPaymentResults: ExtraPaymentResults | null
+  chartData: ChartDataPoint[]
+}
 
 const MortgageCalculator = () => {
   const [formData, setFormData] = useState({
@@ -28,52 +55,52 @@ const MortgageCalculator = () => {
     loanTerm: 30,
     creditScore: 'excellent',
     extraPayment: 0,
-  });
+  })
 
-  const [results, setResults] = useState({
+  const [results, setResults] = useState<Results>({
     monthlyPayment: 0,
     totalInterest: 0,
     totalAmount: 0,
     downPaymentAmount: 0,
     extraPaymentResults: null,
     chartData: [],
-  });
+  })
 
   const creditScoreRanges = [
     { value: 'excellent', label: 'Excellent (750+)', rate: 6.0 },
     { value: 'good', label: 'Good (700-749)', rate: 6.5 },
     { value: 'fair', label: 'Fair (650-699)', rate: 7.0 },
     { value: 'poor', label: 'Poor (600-649)', rate: 8.0 },
-  ];
+  ]
 
-  const loanTermOptions = [10, 15, 20, 25, 30];
+  const loanTermOptions = [10, 15, 20, 25, 30]
 
   const calculateMortgage = () => {
     const principal =
-      formData.homePrice - (formData.homePrice * formData.downPayment) / 100;
-    const monthlyRate = formData.interestRate / 100 / 12;
-    const numberOfPayments = formData.loanTerm * 12;
+      formData.homePrice - (formData.homePrice * formData.downPayment) / 100
+    const monthlyRate = formData.interestRate / 100 / 12
+    const numberOfPayments = formData.loanTerm * 12
 
     const monthlyPayment =
       (principal *
         (monthlyRate * Math.pow(1 + monthlyRate, numberOfPayments))) /
-      (Math.pow(1 + monthlyRate, numberOfPayments) - 1);
+      (Math.pow(1 + monthlyRate, numberOfPayments) - 1)
 
-    const totalAmount = monthlyPayment * numberOfPayments;
-    const totalInterest = totalAmount - principal;
-    const downPaymentAmount = (formData.homePrice * formData.downPayment) / 100;
+    const totalAmount = monthlyPayment * numberOfPayments
+    const totalInterest = totalAmount - principal
+    const downPaymentAmount = (formData.homePrice * formData.downPayment) / 100
 
     // Calculate amortization schedule for chart
-    let balance = principal;
-    const chartData = [];
-    let totalInterestPaid = 0;
+    let balance = principal
+    const chartData: ChartDataPoint[] = []
+    let totalInterestPaid = 0
 
     // Standard loan calculations
     for (let month = 1; month <= numberOfPayments; month++) {
-      const interestPayment = balance * monthlyRate;
-      const principalPayment = monthlyPayment - interestPayment;
-      balance -= principalPayment;
-      totalInterestPaid += interestPayment;
+      const interestPayment = balance * monthlyRate
+      const principalPayment = monthlyPayment - interestPayment
+      balance -= principalPayment
+      totalInterestPaid += interestPayment
 
       if (month % 12 === 0 || month === numberOfPayments) {
         // Show yearly data points
@@ -81,44 +108,43 @@ const MortgageCalculator = () => {
           year: Math.ceil(month / 12),
           standardBalance: Math.max(0, balance),
           standardInterest: totalInterestPaid,
-        });
+        })
       }
     }
 
     // Extra payment calculations
-    let extraPaymentResults = null;
+    let extraPaymentResults: ExtraPaymentResults | null = null
     if (formData.extraPayment > 0) {
-      let extraBalance = principal;
-      let extraTotalInterest = 0;
-      let extraMonthsPaid = 0;
-      const extraChartData = [];
+      let extraBalance = principal
+      let extraTotalInterest = 0
+      let extraMonthsPaid = 0
 
       for (let month = 1; month <= numberOfPayments; month++) {
-        if (extraBalance <= 0) break;
+        if (extraBalance <= 0) break
 
-        const interestPayment = extraBalance * monthlyRate;
-        const principalPayment = monthlyPayment - interestPayment;
-        const totalPayment = principalPayment + formData.extraPayment;
+        const interestPayment = extraBalance * monthlyRate
+        const principalPayment = monthlyPayment - interestPayment
+        const totalPayment = principalPayment + formData.extraPayment
 
-        extraBalance -= totalPayment;
-        extraTotalInterest += interestPayment;
-        extraMonthsPaid = month;
+        extraBalance -= totalPayment
+        extraTotalInterest += interestPayment
+        extraMonthsPaid = month
 
         if (month % 12 === 0 || extraBalance <= 0) {
           const yearIndex = chartData.findIndex(
             item => item.year === Math.ceil(month / 12)
-          );
+          )
           if (yearIndex !== -1) {
-            chartData[yearIndex].extraBalance = Math.max(0, extraBalance);
-            chartData[yearIndex].extraInterest = extraTotalInterest;
+            chartData[yearIndex].extraBalance = Math.max(0, extraBalance)
+            chartData[yearIndex].extraInterest = extraTotalInterest
           }
         }
 
-        if (extraBalance <= 0) break;
+        if (extraBalance <= 0) break
       }
 
-      const interestSaved = totalInterest - extraTotalInterest;
-      const timeSaved = numberOfPayments - extraMonthsPaid;
+      const interestSaved = totalInterest - extraTotalInterest
+      const timeSaved = numberOfPayments - extraMonthsPaid
 
       extraPaymentResults = {
         monthsPaid: extraMonthsPaid,
@@ -128,7 +154,7 @@ const MortgageCalculator = () => {
         timeSavedMonths: timeSaved,
         timeSavedYears: Math.floor(timeSaved / 12),
         timeSavedRemainingMonths: timeSaved % 12,
-      };
+      }
     }
 
     setResults({
@@ -138,34 +164,34 @@ const MortgageCalculator = () => {
       downPaymentAmount,
       extraPaymentResults,
       chartData,
-    });
-  };
+    })
+  }
 
   useEffect(() => {
-    calculateMortgage();
-  }, [formData]);
+    calculateMortgage()
+  }, [formData])
 
   const handleInputChange = (field: string, value: number) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
-  };
+    setFormData(prev => ({ ...prev, [field]: value }))
+  }
 
   const handleCreditScoreChange = (creditScore: string) => {
     const selectedScore = creditScoreRanges.find(
       score => score.value === creditScore
-    );
+    )
     setFormData(prev => ({
       ...prev,
       creditScore,
       interestRate: selectedScore?.rate || 6.0,
-    }));
-  };
+    }))
+  }
 
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
-    }).format(amount);
-  };
+    }).format(amount)
+  }
 
   return (
     <div
@@ -505,7 +531,7 @@ const MortgageCalculator = () => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
 export default MortgageCalculator;
